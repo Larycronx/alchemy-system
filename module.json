@@ -1,0 +1,52 @@
+{
+  "id": "alchemy-system",
+  "title": "Sistema de Alquimia",
+  "description": "Sistema de alquimia para D&D 5e com receitas, conhecimento individual, experimentação, fabricação segura, histórico, notas e administração do Mestre.",
+  "version": "1.2.0",
+  "authors": [
+    {
+      "name": "Sistema de Alquimia"
+    }
+  ],
+  "compatibility": {
+    "minimum": "13",
+    "verified": "13"
+  },
+  "esmodules": [
+    "scripts/main.js"
+  ],
+  "styles": [
+    "styles/alchemy.css"
+  ],
+  "languages": [
+    {
+      "lang": "pt-BR",
+      "name": "Português (Brasil)",
+      "path": "lang/pt-BR.json"
+    }
+  ],
+  "system": [
+    "dnd5e"
+  ],
+  "relationships": {
+    "systems": [
+      {
+        "id": "dnd5e",
+        "type": "system",
+        "compatibility": {
+          "minimum": "4.0.0"
+        }
+      }
+    ],
+    "recommends": [
+      {
+        "id": "midi-qol",
+        "type": "module",
+        "reason": "Automação opcional de itens e efeitos; o módulo funciona sem esta dependência."
+      }
+    ]
+  },
+  "socket": true,
+  "readme": "README.md",
+  "license": "LICENSE"
+}

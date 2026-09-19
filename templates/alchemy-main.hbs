@@ -1,0 +1,49 @@
+<section class="alchemy-shell theme-{{theme}}" aria-label="{{localize 'ALCHEMY.App.Title'}}">
+  {{#if noActor}}
+  <div class="alchemy-empty"><i class="fa-solid fa-user-slash"></i><p>{{localize "ALCHEMY.App.NoActor"}}</p></div>
+  {{else}}
+  <header class="alchemy-hero">
+    <img src="{{actor.img}}" alt="" />
+    <div class="hero-copy"><h1>{{actor.name}}</h1><p>{{localize "ALCHEMY.App.Subtitle"}}</p></div>
+    <div class="alchemy-level"><strong>{{progression.level}}</strong><span>{{progression.xp}} XP</span></div>
+    {{#if isGM}}<button type="button" data-action="gmAdmin" title="{{localize 'ALCHEMY.GM.Title'}}"><i class="fa-solid fa-user-shield"></i><span>Administração</span></button>{{/if}}
+    <button type="button" data-action="refresh" title="{{localize 'ALCHEMY.Actions.Refresh'}}"><i class="fa-solid fa-rotate"></i><span>{{localize "ALCHEMY.Actions.Refresh"}}</span></button>
+  </header>
+
+  <nav class="alchemy-tabs" aria-label="{{localize 'ALCHEMY.App.Navigation'}}">
+    {{#each tabs}}<button type="button" data-action="selectTab" data-tab="{{id}}" class="{{#if active}}active{{/if}}" aria-pressed="{{active}}">{{label}}</button>{{/each}}
+  </nav>
+
+  <div class="alchemy-toolbar">
+    <label class="search-field"><i class="fa-solid fa-magnifying-glass"></i><input data-alchemy-search type="search" value="{{query}}" placeholder="{{localize 'ALCHEMY.Actions.Search'}}" /></label>
+    <div class="type-filters" role="group" aria-label="{{localize 'ALCHEMY.Actions.FilterType'}}">
+      <button type="button" data-type-filter="any" class="{{#if (eq typeFilter 'any')}}active{{/if}}">{{localize "ALCHEMY.Types.any"}}</button>
+      <button type="button" data-type-filter="potion" class="{{#if (eq typeFilter 'potion')}}active{{/if}}"><i class="fa-solid fa-flask-vial"></i> {{localize "ALCHEMY.Types.potion"}}</button>
+      <button type="button" data-type-filter="poison" class="{{#if (eq typeFilter 'poison')}}active{{/if}}"><i class="fa-solid fa-skull-crossbones"></i> {{localize "ALCHEMY.Types.poison"}}</button>
+      <button type="button" data-type-filter="special" class="{{#if (eq typeFilter 'special')}}active{{/if}}"><i class="fa-solid fa-sparkles"></i> {{localize "ALCHEMY.Types.special"}}</button>
+    </div>
+    <span class="alchemy-midi {{#if midiActive}}active{{/if}}"><i class="fa-solid fa-plug"></i> Midi-QOL: {{#if midiActive}}{{localize "ALCHEMY.App.Available"}}{{else}}{{localize "ALCHEMY.App.Optional"}}{{/if}}</span>
+  </div>
+
+  <main class="alchemy-scroll">
+    {{#if (eq activeTab "craft")}}
+    <section class="alchemy-pane"><div class="section-heading"><div><span class="eyebrow">{{localize "ALCHEMY.Tabs.craft"}}</span><h2><i class="fa-solid fa-mortar-pestle"></i> {{localize "ALCHEMY.App.CraftTitle"}}</h2></div><span class="result-count">{{allKnownCraftable.length}} receitas</span></div>
+      <div class="recipe-grid">{{#each allKnownCraftable}}
+        <article class="recipe-card {{type}} {{#unless craftable}}unavailable{{/unless}}"><img src="{{img}}" alt=""/><div class="recipe-body"><div class="card-kicker"><span class="type-chip">{{typeLabel}}</span><span>{{rarityLabel}}</span></div><h3>{{name}}</h3><p>{{description}}</p><p class="ingredients"><strong>{{localize "ALCHEMY.App.Ingredients"}}:</strong> {{ingredientText}}</p></div><div class="card-actions"><button type="button" data-action="favorite" data-recipe-id="{{id}}" title="{{localize 'ALCHEMY.Actions.Favorite'}}"><i class="{{#if favorite}}fa-solid{{else}}fa-regular{{/if}} fa-star"></i></button><button type="button" data-action="craft" data-recipe-id="{{id}}" {{#unless craftable}}disabled{{/unless}}><i class="fa-solid fa-hammer"></i> {{localize "ALCHEMY.Actions.Craft"}}</button></div></article>
+      {{else}}<p class="alchemy-empty">{{localize "ALCHEMY.App.NoKnownRecipes"}}</p>{{/each}}</div>
+      {{#if experimentation}}<aside class="experiment-panel"><div class="section-heading"><div><span class="eyebrow">{{localize "ALCHEMY.App.Experiment"}}</span><h2><i class="fa-solid fa-flask"></i> Misture ingredientes</h2></div></div><p>{{localize "ALCHEMY.App.ExperimentHint"}}</p><div class="ingredient-grid">{{#each ingredients}}<label class="ingredient-option"><input type="checkbox" name="experimentIngredient" value="{{id}}"/><img src="{{img}}" alt=""/><span><strong>{{name}}</strong><small>{{quantity}}× · {{category}}</small></span></label>{{else}}<p>{{localize "ALCHEMY.App.NoIngredients"}}</p>{{/each}}</div><button type="button" data-action="experiment" {{#if busy}}disabled{{/if}}><i class="fa-solid fa-vial-circle-check"></i> {{localize "ALCHEMY.Actions.Experiment"}}</button></aside>{{/if}}
+    </section>
+    {{/if}}
+
+    {{#if (eq activeTab "library")}}<section class="alchemy-pane"><div class="section-heading"><div><span class="eyebrow">{{localize "ALCHEMY.Tabs.library"}}</span><h2>Catálogo de alquimia</h2></div><span class="result-count">{{catalogRecipes.length}} receitas</span></div><p class="catalog-hint">Consulte todas as receitas liberadas pelo Mestre. Use os filtros acima para alternar entre poções, venenos e especiais.</p><div class="recipe-grid">{{#each catalogRecipes}}<article class="recipe-card {{type}}"><img src="{{img}}" alt=""/><div class="recipe-body"><div class="card-kicker"><span class="type-chip">{{typeLabel}}</span><span>{{rarityLabel}}</span></div><h3>{{name}}</h3><p>{{description}}</p><p class="ingredients">{{ingredientText}}</p></div></article>{{else}}<p class="alchemy-empty">Nenhuma receita corresponde ao filtro.</p>{{/each}}</div></section>{{/if}}
+
+    {{#if (eq activeTab "ingredients")}}<section class="alchemy-pane"><div class="section-heading"><div><span class="eyebrow">{{localize "ALCHEMY.Tabs.ingredients"}}</span><h2>Biblioteca de ingredientes</h2></div></div><p class="catalog-hint">Veja os reagentes do catálogo e compare com o inventário atual.</p><div class="ingredient-library">{{#each ingredientLibrary}}<article class="ingredient-library-card"><img src="{{img}}" alt=""/><div><h3>{{name}}</h3><p>{{category}} · <strong>{{owned}}×</strong> no inventário</p><p>{{#each properties}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}</p></div></article>{{else}}<p class="alchemy-empty">{{localize "ALCHEMY.App.NoIngredients"}}</p>{{/each}}</div></section>{{/if}}
+
+    {{#if (eq activeTab "known")}}<section class="alchemy-pane"><div class="section-heading"><div><span class="eyebrow">{{localize "ALCHEMY.Tabs.known"}}</span><h2>Livro do personagem</h2></div><span class="result-count">{{knownRecipes.length}} receitas</span></div><p class="catalog-hint">Estas são as receitas que o Mestre liberou ou que foram descobertas.</p><div class="recipe-grid">{{#each knownRecipes}}<article class="recipe-card {{type}}"><img src="{{img}}" alt=""/><div class="recipe-body"><div class="card-kicker"><span class="type-chip">{{typeLabel}}</span><span>{{rarityLabel}}</span></div><h3>{{name}}</h3><p>{{description}}</p><p class="ingredients">{{ingredientText}}</p></div><div class="card-actions"><button type="button" data-action="favorite" data-recipe-id="{{id}}"><i class="{{#if favorite}}fa-solid{{else}}fa-regular{{/if}} fa-star"></i> {{localize "ALCHEMY.Actions.Favorite"}}</button></div></article>{{else}}<p class="alchemy-empty">Nenhuma receita foi liberada ainda.</p>{{/each}}</div></section>{{/if}}
+
+    {{#if (eq activeTab "history")}}<section class="alchemy-pane"><div class="section-heading"><div><span class="eyebrow">{{localize "ALCHEMY.Tabs.history"}}</span><h2>Histórico de fabricação</h2></div></div><div class="history-list">{{#each history}}<article class="history-entry {{#if success}}success{{else}}failure{{/if}}"><time>{{date}}</time><h3>{{recipeName}}</h3><p><strong>{{outcomeLabel}}</strong>{{#if check.total}} · {{localize "ALCHEMY.App.Roll"}} {{check.total}}{{/if}}</p><p>{{#each ingredients}}{{quantity}}× {{name}}{{#unless @last}}, {{/unless}}{{/each}}</p>{{#if output}}<p>{{localize "ALCHEMY.App.Output"}}: {{amount}}× {{output}} ({{quality}})</p>{{/if}}</article>{{else}}<p class="alchemy-empty">{{localize "ALCHEMY.App.EmptyHistory"}}</p>{{/each}}</div></section>{{/if}}
+
+    {{#if (eq activeTab "notes")}}<section class="alchemy-pane notes-pane"><div class="section-heading"><div><span class="eyebrow">{{localize "ALCHEMY.Tabs.notes"}}</span><h2>Notas do laboratório</h2></div></div><p>{{localize "ALCHEMY.App.NotesPrivacy"}}</p><textarea name="generalNotes" maxlength="20000" placeholder="{{localize 'ALCHEMY.App.NotesPlaceholder'}}">{{notes.general}}</textarea><button type="button" data-action="saveNotes"><i class="fa-solid fa-floppy-disk"></i> {{localize "ALCHEMY.Actions.Save"}}</button></section>{{/if}}
+  </main>
+  {{/if}}
+</section>
