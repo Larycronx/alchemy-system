@@ -25,13 +25,15 @@ O **Sistema de Alquimia** transforma o inventário do personagem em um laborató
 
 ## 🚀 Comece em poucos minutos
 
-1. Copie o projeto para `{FoundryData}/Data/modules/alchemy-system/`.
+1. No Foundry, crie um módulo com o mesmo nome.
 
-1. Reinicie o Foundry e abra um mundo baseado em **dnd5e**.
+2. Copie o projeto para `{FoundryData}/Data/modules/alchemy-system/`.
 
-1. Em **Gerenciar Módulos**, ative **Sistema de Alquimia**.
+3. Reinicie o Foundry e abra um mundo baseado em **dnd5e**.
 
-1. Abra o laboratório pelo botão de frasco próximo ao chat.
+4. Em **Gerenciar Módulos**, ative **Sistema de Alquimia**.
+
+5. Abra o laboratório pelo botão de frasco próximo ao chat.
 
 O Mestre pode liberar receitas pela **Administração de Alquimia**. Jogadores também podem descobri-las por experimentação, caso essa opção esteja ativa.
 
