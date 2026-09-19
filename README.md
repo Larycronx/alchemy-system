@@ -1,74 +1,254 @@
-[1mdiff --git a/README.md b/README.md[m
-[1mindex 08067fc..cd5eaaf 100644[m
-[1m--- a/README.md[m
-[1m+++ b/README.md[m
-[36m@@ -1,8 +1,39 @@[m
-[31m-# Sistema de Alquimia para Foundry VTT v13[m
-[32m+[m[32m# 🧪 Sistema de Alquimia[m
- [m
-[31m-O **Sistema de Alquimia** é um módulo autônomo para **Foundry Virtual Tabletop v13** e **D&D 5e**. Ele implementa conhecimento individual, experimentação com dois ou três ingredientes, produção de poções e venenos, testes opcionais, histórico, anotações, favoritos, administração do Mestre e integração opcional com Midi-QOL.[m
-[32m+[m[32m<p align="center">[m
-[32m+[m[32m  <img src="assets/alchemy.svg" alt="Frasco de alquimia" width="112" />[m
-[32m+[m[32m</p>[m
- [m
-[31m-> **Estado do projeto:** versão 1.0.0, núcleo funcional estável. O módulo não usa processo de compilação nem dependências JavaScript externas.[m
-[32m+[m[32m<p align="center"><strong>Descubra. Experimente. Fabrique.</strong><br />Um laboratório completo para campanhas de <strong>Foundry VTT v13</strong> com <strong>D&D 5e</strong>.</p>[m
-[32m+[m
-[32m+[m[32m<p align="center">[m
-[32m+[m[32m  <img src="https://img.shields.io/badge/Foundry_VTT-v13-7b61ff?style=for-the-badge" alt="Foundry VTT v13" />[m
-[32m+[m[32m  <img src="https://img.shields.io/badge/D%26D_5e-%E2%89%A54.0.0-cb3b3b?style=for-the-badge" alt="D&D 5e 4.0.0 ou superior" />[m
-[32m+[m[32m  <img src="https://img.shields.io/badge/idioma-pt--BR-2d8a62?style=for-the-badge" alt="Português do Brasil" />[m
-[32m+[m[32m  <img src="https://img.shields.io/badge/licen%C3%A7a-MIT-e0b252?style=for-the-badge" alt="Licença MIT" />[m
-[32m+[m[32m</p>[m
-[32m+[m
-[32m+[m[32mO **Sistema de Alquimia** transforma o inventário do personagem em um laboratório vivo: jogadores aprendem receitas, combinam ingredientes, descobrem resultados e registram sua evolução. Mestres controlam a biblioteca, o conhecimento individual e toda a administração da fabricação — sem processo de compilação e sem dependências JavaScript externas.[m
-[32m+[m
-[32m+[m[32m## ✨ O que o módulo oferece[m
-[32m+[m
-[32m+[m[32m| Para jogadores | Para Mestres |[m
-[32m+[m[32m|---|---|[m
-[32m+[m[32m| Experimentação com 2 ou 3 ingredientes | Biblioteca global de receitas |[m
-[32m+[m[32m| Poções, venenos e resultados especiais | Conhecimento individual por personagem |[m
-[32m+[m[32m| Favoritos, histórico e anotações privadas | Editor, duplicação, importação e exportação |[m
-[32m+[m[32m| Testes opcionais, qualidade e progressão | Logs, configurações e restauração de exemplos |[m
-[32m+[m
-[32m+[m[32m> **Estado do projeto:** versão **1.2.0**, núcleo funcional estável e validado para Foundry VTT v13.[m
-[32m+[m
-[32m+[m[32m## 🚀 Comece em poucos minutos[m
-[32m+[m
-[32m+[m[32m1. Copie o projeto para `{FoundryData}/Data/modules/alchemy-system/`.[m
-[32m+[m[32m2. Reinicie o Foundry e abra um mundo baseado em **dnd5e**.[m
-[32m+[m[32m3. Em **Gerenciar Módulos**, ative **Sistema de Alquimia**.[m
-[32m+[m[32m4. Abra o laboratório pelo botão de frasco próximo ao chat.[m
-[32m+[m
-[32m+[m[32mO Mestre pode liberar receitas pela **Administração de Alquimia**. Jogadores também podem descobri-las por experimentação, caso essa opção esteja ativa.[m
- [m
- ## Requisitos e compatibilidade[m
- [m
-[1mdiff --git a/styles/alchemy.css b/styles/alchemy.css[m
-[1mindex f63cd9d..4c9c14f 100644[m
-[1m--- a/styles/alchemy.css[m
-[1m+++ b/styles/alchemy.css[m
-[36m@@ -1,7 +1,7 @@[m
- :root{--alc-ease:cubic-bezier(.23,1,.32,1)}[m
- .alchemy-system{--alc-bg:#0d1418;--alc-panel:#172229;--alc-panel-2:#1d2c35;--alc-ink:#e8f0f2;--alc-muted:#a9bbc1;--alc-accent:#5ed0a1;--alc-accent-2:#f2bf68;--alc-border:#3b5964;--alc-danger:#ff8b87;color:var(--alc-ink);font-family:var(--font-primary,Inter,system-ui,sans-serif);font-size:14px}.alchemy-system .window-content{padding:0;overflow:hidden}.alchemy-shell{height:100%;min-height:0;display:flex;flex-direction:column;background:radial-gradient(circle at 85% -10%,#24483e 0,transparent 34%),linear-gradient(135deg,#0b1115,#111c22 55%,#0d171a);color:var(--alc-ink)}.alchemy-shell.theme-dark{--alc-bg:#0d1418;--alc-panel:#172229;--alc-panel-2:#1d2c35;--alc-ink:#e8f0f2;--alc-muted:#a9bbc1;--alc-accent:#5ed0a1;--alc-accent-2:#f2bf68;--alc-border:#3b5964}.alchemy-shell.theme-light{--alc-bg:#edf2ef;--alc-panel:#fff;--alc-panel-2:#f5faf7;--alc-ink:#17211c;--alc-muted:#52655c;--alc-accent:#256044;--alc-accent-2:#9b6b2f;--alc-border:#9bad9f;background:var(--alc-bg)}.alchemy-shell.theme-parchment{--alc-bg:#1a211f;--alc-panel:#202d2a;--alc-panel-2:#263933;--alc-ink:#edf3ed;--alc-muted:#b3c4b7;--alc-accent:#76c89c;--alc-accent-2:#e0b66e;--alc-border:#48675a;background:var(--alc-bg)}[m
- .alchemy-hero{display:flex;align-items:center;gap:13px;padding:13px 17px;background:linear-gradient(100deg,#102f2c,#153e36 60%,#1d5141);color:#f5fffb;border-bottom:1px solid var(--alc-accent-2);box-shadow:0 5px 18px #0006}.alchemy-hero>img{width:52px;height:52px;object-fit:cover;border:2px solid var(--alc-accent-2);border-radius:50%;background:#fff}.hero-copy{flex:1;min-width:0}.alchemy-hero h1,.alchemy-hero p{margin:0}.alchemy-hero h1{font-size:1.35rem;letter-spacing:.02em}.alchemy-hero p{color:#c8ded6;font-size:.85rem}.alchemy-level{display:flex;flex-direction:column;align-items:center;min-width:64px}.alchemy-level strong{font-size:1.35rem;color:var(--alc-accent-2)}.alchemy-level span{font-size:.72rem;color:#c8ded6}.alchemy-system button{color:inherit;border:1px solid var(--alc-border);background:var(--alc-panel-2);border-radius:6px;padding:7px 10px;cursor:pointer;line-height:1.2;transition:transform 140ms var(--alc-ease),background 140ms var(--alc-ease),border-color 140ms var(--alc-ease)}.alchemy-system button:hover:not(:disabled),.alchemy-system button:focus-visible{outline:2px solid var(--alc-accent-2);outline-offset:1px;border-color:var(--alc-accent);background:#27423e}.alchemy-system button:active:not(:disabled){transform:scale(.97)}.alchemy-system button:disabled{opacity:.45;cursor:not-allowed}.alchemy-hero button{color:#fff;background:#ffffff14;border-color:#ffffff55}.alchemy-hero button span{margin-left:4px}[m
-[31m-.alchemy-tabs{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:3px;padding:5px;background:#0a1013;border-bottom:1px solid var(--alc-border)}.alchemy-tabs button{min-height:37px;background:#152229;color:var(--alc-muted);font-weight:600}.alchemy-tabs button.active{background:var(--alc-accent);color:#071610;border-color:var(--alc-accent)}.alchemy-toolbar{display:flex;gap:9px;align-items:center;padding:9px 12px;background:#111b20;border-bottom:1px solid var(--alc-border);flex-wrap:wrap}.search-field{display:flex;align-items:center;gap:7px;flex:1 1 210px;color:var(--alc-muted)}.search-field input{width:100%}.alchemy-system input,.alchemy-system select,.alchemy-system textarea{color:var(--alc-ink);background:#0f1a20;border:1px solid var(--alc-border);border-radius:6px;padding:8px}.type-filters{display:flex;gap:4px;flex:0 0 auto}.type-filters button{padding:7px 9px;color:var(--alc-muted);background:#17242b;font-size:.82rem}.type-filters button.active{background:var(--alc-accent);color:#06150f;border-color:var(--alc-accent);font-weight:800}.alchemy-midi{font-size:.75rem;color:var(--alc-muted);white-space:nowrap}.alchemy-midi.active{color:var(--alc-accent)}.alchemy-scroll{flex:1;min-height:0;overflow:auto;padding:16px}.alchemy-pane{max-width:1250px;margin:0 auto}.section-heading{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:0 0 13px;border-bottom:1px solid var(--alc-border);padding-bottom:9px}.section-heading h2{margin:2px 0 0;color:var(--alc-ink);font-size:1.3rem}.section-heading h2 i{color:var(--alc-accent)}.eyebrow{font-size:.7rem;text-transform:uppercase;letter-spacing:.14em;color:var(--alc-accent);font-weight:800}.result-count{color:var(--alc-muted);font-size:.8rem}.catalog-hint{margin:0 0 14px;color:var(--alc-muted)}[m
-[32m+[m[32m.alchemy-tabs{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:3px;padding:5px;background:#0a1013;border-bottom:1px solid var(--alc-border)}.alchemy-tabs button{min-height:37px;background:#152229;color:var(--alc-muted);font-weight:600}.alchemy-tabs button.active{background:var(--alc-accent);color:#071610;border-color:var(--alc-accent)}.alchemy-toolbar{display:flex;gap:9px;align-items:center;padding:9px 12px;background:#111b20;border-bottom:1px solid var(--alc-border);flex-wrap:wrap}.search-field{display:flex;align-items:center;gap:7px;flex:1 1 210px;color:var(--alc-muted)}.search-field input{width:100%}.alchemy-system input,.alchemy-system select,.alchemy-system textarea{color:var(--alc-ink);background:#0f1a20;border:1px solid var(--alc-border);border-radius:6px;padding:8px}.type-filters{display:flex;gap:4px;flex:0 0 auto}.type-filters button{padding:7px 9px;color:var(--alc-muted);background:#17242b;font-size:.82rem}.type-filters button.active{background:var(--alc-accent);color:#06150f;border-color:var(--alc-accent);font-weight:800}.alchemy-midi{font-size:.75rem;color:var(--alc-muted);white-space:nowrap}.alchemy-midi.active{color:var(--alc-accent)}.alchemy-scroll{flex:1;min-height:0;overflow:auto;padding:16px}.alchemy-pane{max-width:1250px;margin:0 auto}.alchemy-welcome{display:flex;align-items:stretch;justify-content:space-between;gap:20px;margin:0 0 18px;padding:22px 24px;overflow:hidden;position:relative;background:radial-gradient(circle at 90% 15%,#5ed0a133 0,transparent 34%),linear-gradient(120deg,#183c35,#13252c 72%);border:1px solid #467c6a;border-radius:14px;box-shadow:0 10px 26px #0005}.alchemy-welcome::after{content:"";position:absolute;width:180px;height:180px;right:64px;bottom:-110px;border:1px solid #b8e8c522;border-radius:50%;box-shadow:0 0 0 24px #b8e8c511,0 0 0 48px #b8e8c508}.welcome-copy{position:relative;z-index:1;max-width:680px}.welcome-copy h2{margin:4px 0 7px;color:#f3fff9;font-size:1.65rem;letter-spacing:-.02em}.welcome-copy p{margin:0;color:#c5ded5;line-height:1.5;max-width:600px}.welcome-meta{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:15px;color:#d8f1e6;font-size:.8rem}.welcome-meta i{margin-right:5px;color:var(--alc-accent-2)}.welcome-mark{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-width:118px;position:relative;z-index:1;color:#e4f9ee}.welcome-mark i{font-size:3.5rem;color:var(--alc-accent-2);filter:drop-shadow(0 5px 10px #0006)}.welcome-mark span{font-size:.62rem;letter-spacing:.25em;color:#a9d8c5}.section-heading{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:0 0 13px;border-bottom:1px solid var(--alc-border);padding-bottom:9px}.section-heading h2{margin:2px 0 0;color:var(--alc-ink);font-size:1.3rem}.section-heading h2 i{color:var(--alc-accent)}.eyebrow{font-size:.7rem;text-transform:uppercase;letter-spacing:.14em;color:var(--alc-accent);font-weight:800}.result-count{color:var(--alc-muted);font-size:.8rem}.catalog-hint{margin:0 0 14px;color:var(--alc-muted)}section-heading{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:0 0 13px;border-bottom:1px solid var(--alc-border);padding-bottom:9px}.section-heading h2{margin:2px 0 0;color:var(--alc-ink);font-size:1.3rem}.section-heading h2 i{color:var(--alc-accent)}.eyebrow{font-size:.7rem;text-transform:uppercase;letter-spacing:.14em;color:var(--alc-accent);font-weight:800}.result-count{color:var(--alc-muted);font-size:.8rem}.catalog-hint{margin:0 0 14px;color:var(--alc-muted)}[m
- .recipe-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:12px}.recipe-card{display:grid;grid-template-columns:68px 1fr;gap:11px;background:linear-gradient(145deg,var(--alc-panel),#122027);border:1px solid var(--alc-border);border-left:4px solid var(--alc-accent);border-radius:9px;padding:11px;box-shadow:0 5px 16px #0004;min-height:145px}.recipe-card.poison{border-left-color:#ef7886}.recipe-card.special{border-left-color:var(--alc-accent-2)}.recipe-card>img{width:68px;height:68px;object-fit:cover;border-radius:8px;background:#0b1317}.recipe-body{min-width:0}.recipe-body h3,.recipe-body p{margin:0 0 6px}.recipe-body h3{color:#f3faf7;font-size:1.02rem}.recipe-body p{color:#c2d1d4;line-height:1.35}.recipe-body .ingredients{font-size:.8rem;color:#d9e6e4}.recipe-body .ingredients strong{color:var(--alc-accent-2)}.card-kicker{display:flex;gap:7px;align-items:center;margin-bottom:5px;color:var(--alc-muted);font-size:.73rem}.type-chip{display:inline-flex;padding:3px 7px;border-radius:99px;background:#275149;color:#bff4db;font-weight:800}.poison .type-chip{background:#552d3b;color:#ffc1c8}.special .type-chip{background:#554326;color:#ffe0a6}.card-actions{grid-column:1/-1;display:flex;justify-content:flex-end;gap:6px;border-top:1px solid #ffffff12;padding-top:8px}.recipe-card.unavailable{opacity:.72}.experiment-panel{margin-top:20px;padding:15px;background:linear-gradient(145deg,#19352f,#15242a);border:1px solid #3f7768;border-radius:9px;box-shadow:0 5px 16px #0003}.experiment-panel p{color:var(--alc-muted)}.ingredient-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:7px;margin:10px 0}.ingredient-option{display:flex;align-items:center;gap:7px;background:#112026;border:1px solid var(--alc-border);border-radius:7px;padding:7px;color:var(--alc-ink)}.ingredient-option:has(input:checked){outline:2px solid var(--alc-accent);background:#1b3b35}.ingredient-option img{width:35px;height:35px;object-fit:cover}.ingredient-option span{display:flex;flex-direction:column;min-width:0}.ingredient-option strong{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.ingredient-option small{color:var(--alc-muted)}.ingredient-library{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:9px}.ingredient-library-card{display:flex;gap:10px;align-items:center;padding:10px;background:var(--alc-panel);border:1px solid var(--alc-border);border-radius:8px}.ingredient-library-card img{width:43px;height:43px}.ingredient-library-card h3,.ingredient-library-card p{margin:0 0 3px}.ingredient-library-card h3{font-size:.95rem}.ingredient-library-card p{font-size:.78rem;color:var(--alc-muted)}.history-list{display:flex;flex-direction:column;gap:8px}.history-entry{padding:10px 12px;background:var(--alc-panel);border:1px solid var(--alc-border);border-left:5px solid #ef7886;border-radius:7px}.history-entry.success{border-left-color:var(--alc-accent)}.history-entry h3,.history-entry p{margin:3px 0}.history-entry time{font-size:.74rem;color:var(--alc-muted)}.notes-pane textarea{display:block;width:100%;height:320px;resize:vertical;margin:10px 0}.alchemy-empty{text-align:center;padding:35px;color:var(--alc-muted)}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}[m
- .alchemy-admin-grid{display:grid;grid-template-columns:340px 1fr;gap:13px}.alchemy-admin-grid>section{background:var(--alc-panel);border:1px solid var(--alc-border);border-radius:8px;padding:12px}.admin-recipes>header{display:flex;justify-content:space-between;gap:6px}.admin-recipe-list{max-height:420px;overflow:auto;margin:8px 0}.admin-recipe-list article{display:grid;grid-template-columns:38px 1fr auto auto auto;gap:5px;align-items:center;border-bottom:1px solid #ffffff12;padding:6px 0}.admin-recipe-list img{width:36px;height:36px;object-fit:cover}.admin-recipe-list div{display:flex;flex-direction:column;min-width:0}.admin-recipe-list strong,.admin-recipe-list small{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.danger{color:var(--alc-danger)!important}.form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.form-grid label{display:flex;flex-direction:column;gap:4px}.form-grid .wide{grid-column:1/-1}.form-grid textarea{min-height:64px;resize:vertical}.check-row{display:flex;flex-wrap:wrap;gap:12px;margin:10px 0}.knowledge-list{display:grid;gap:4px;max-height:250px;overflow:auto;margin:9px 0}.knowledge-row{display:flex;align-items:center;justify-content:space-between;gap:5px;padding:4px 6px;background:#122027;border:1px solid #ffffff0b;border-radius:5px}.knowledge-row label{flex:1}.icon-button{padding:4px 7px}.admin-knowledge,.admin-logs{grid-column:1/-1}.alchemy-chat{border-left:4px solid var(--alc-accent);padding-left:8px}.alchemy-chat h3{color:var(--alc-accent)}.alchemy-chat-button{margin-left:4px}.header-actions{display:flex;gap:5px}[m
-[31m-@media (max-width:760px){.alchemy-tabs{grid-template-columns:repeat(2,1fr)}.type-filters{width:100%;overflow:auto}.type-filters button{flex:1;white-space:nowrap}.alchemy-midi{width:100%}.alchemy-admin-grid{grid-template-columns:1fr}.admin-knowledge,.admin-logs{grid-column:1}.recipe-grid{grid-template-columns:1fr}.alchemy-hero p{display:none}.alchemy-system .window-content{overflow:auto}.alchemy-shell{height:auto;min-height:100%}.form-grid{grid-template-columns:1fr}.form-grid .wide{grid-column:auto}}[m
-[32m+[m[32m@media (max-width:760px){.alchemy-tabs{grid-template-columns:repeat(2,1fr)}.type-filters{width:100%;overflow:auto}.type-filters button{flex:1;white-space:nowrap}.alchemy-midi{width:100%}.alchemy-admin-grid{grid-template-columns:1fr}.admin-knowledge,.admin-logs{grid-column:1}.recipe-grid{grid-template-columns:1fr}.alchemy-hero p{display:none}.alchemy-system .window-content{overflow:auto}.alchemy-shell{height:auto;min-height:100%}.form-grid{grid-template-columns:1fr}.form-grid .wide{grid-column:auto}.alchemy-welcome{padding:18px}.welcome-copy h2{font-size:1.3rem}.welcome-mark{display:none}.welcome-meta{flex-direction:column;gap:6px}}[m
-[1mdiff --git a/templates/alchemy-main.hbs b/templates/alchemy-main.hbs[m
-[1mindex f72ae57..4e5bcd0 100644[m
-[1m--- a/templates/alchemy-main.hbs[m
-[1m+++ b/templates/alchemy-main.hbs[m
-[36m@@ -27,7 +27,7 @@[m
- [m
-   <main class="alchemy-scroll">[m
-     {{#if (eq activeTab "craft")}}[m
-[31m-    <section class="alchemy-pane"><div class="section-heading"><div><span class="eyebrow">{{localize "ALCHEMY.Tabs.craft"}}</span><h2><i class="fa-solid fa-mortar-pestle"></i> {{localize "ALCHEMY.App.CraftTitle"}}</h2></div><span class="result-count">{{allKnownCraftable.length}} receitas</span></div>[m
-[32m+[m[32m    <section class="alchemy-pane"><div class="alchemy-welcome"><div class="welcome-copy"><span class="eyebrow">Laboratório pessoal</span><h2>Pronto para criar algo novo?</h2><p>Combine ingredientes, descubra receitas e transforme seu conhecimento em poções, venenos e soluções especiais.</p><div class="welcome-meta"><span><i class="fa-solid fa-book-open"></i> {{allKnownCraftable.length}} receitas conhecidas</span><span><i class="fa-solid fa-seedling"></i> {{ingredients.length}} ingredientes disponíveis</span></div></div><div class="welcome-mark" aria-hidden="true"><i class="fa-solid fa-flask-vial"></i><span>ALQUIMIA</span></div></div><div class="section-heading"><div><span class="eyebrow">{{localize "ALCHEMY.Tabs.craft"}}</span><h2><i class="fa-solid fa-mortar-pestle"></i> {{localize "ALCHEMY.App.CraftTitle"}}</h2></div><span class="result-count">{{allKnownCraftable.length}} receitas</span></div>[m
-       <div class="recipe-grid">{{#each allKnownCraftable}}[m
-         <article class="recipe-card {{type}} {{#unless craftable}}unavailable{{/unless}}"><img src="{{img}}" alt=""/><div class="recipe-body"><div class="card-kicker"><span class="type-chip">{{typeLabel}}</span><span>{{rarityLabel}}</span></div><h3>{{name}}</h3><p>{{description}}</p><p class="ingredients"><strong>{{localize "ALCHEMY.App.Ingredients"}}:</strong> {{ingredientText}}</p></div><div class="card-actions"><button type="button" data-action="favorite" data-recipe-id="{{id}}" title="{{localize 'ALCHEMY.Actions.Favorite'}}"><i class="{{#if favorite}}fa-solid{{else}}fa-regular{{/if}} fa-star"></i></button><button type="button" data-action="craft" data-recipe-id="{{id}}" {{#unless craftable}}disabled{{/unless}}><i class="fa-solid fa-hammer"></i> {{localize "ALCHEMY.Actions.Craft"}}</button></div></article>[m
-       {{else}}<p class="alchemy-empty">{{localize "ALCHEMY.App.NoKnownRecipes"}}</p>{{/each}}</div>[m
+# 🧪 Sistema de Alquimia
+
+<p align="center">
+<img src="assets/alchemy.svg" alt="Frasco de alquimia" width="112" />
+</p> <p align="center"><strong>Descubra. Experimente. Fabrique.</strong>  
+Um laboratório completo para campanhas de <strong>Foundry VTT v13</strong> com <strong>D&D 5e</strong>.</p> <p align="center">
+  <img src="https://img.shields.io/badge/Foundry_VTT-v13-7b61ff?style=for-the-badge" alt="Foundry VTT v13" />
+  <img src="https://img.shields.io/badge/D%26D_5e-%E2%89%A54.0.0-cb3b3b?style=for-the-badge" alt="D&D 5e 4.0.0 ou superior" />
+  <img src="https://img.shields.io/badge/idioma-pt--BR-2d8a62?style=for-the-badge" alt="Português do Brasil" />
+  <img src="https://img.shields.io/badge/licen%C3%A7a-MIT-e0b252?style=for-the-badge" alt="Licença MIT" />
+</p>
+
+O **Sistema de Alquimia** transforma o inventário do personagem em um laboratório vivo: jogadores aprendem receitas, combinam ingredientes, descobrem resultados e registram sua evolução. Mestres controlam a biblioteca, o conhecimento individual e toda a administração da fabricação — sem processo de compilação e sem dependências JavaScript externas.
+
+## ✨ O que o módulo oferece
+
+| Para jogadores | Para Mestres |
+| --- | --- |
+| Experimentação com 2 ou 3 ingredientes | Biblioteca global de receitas |
+| Poções, venenos e resultados especiais | Conhecimento individual por personagem |
+| Favoritos, histórico e anotações privadas | Editor, duplicação, importação e exportação |
+| Testes opcionais, qualidade e progressão | Logs, configurações e restauração de exemplos |
+
+> **Estado do projeto:** versão **1.2.0**, núcleo funcional estável e validado para Foundry VTT v13.
+
+## 🚀 Comece em poucos minutos
+
+1. Copie o projeto para `{FoundryData}/Data/modules/alchemy-system/`.
+
+1. Reinicie o Foundry e abra um mundo baseado em **dnd5e**.
+
+1. Em **Gerenciar Módulos**, ative **Sistema de Alquimia**.
+
+1. Abra o laboratório pelo botão de frasco próximo ao chat.
+
+O Mestre pode liberar receitas pela **Administração de Alquimia**. Jogadores também podem descobri-las por experimentação, caso essa opção esteja ativa.
+
+## Requisitos e compatibilidade
+
+| Componente | Requisito |
+| --- | --- |
+| Foundry VTT | v13 ou superior dentro da série v13 |
+| Sistema | dnd5e 4.0.0 ou superior compatível com Foundry v13 |
+| Midi-QOL | Opcional; ausência não bloqueia nenhuma função básica |
+| Idioma incluído | Português do Brasil (`pt-BR` ) |
+
+A aplicação usa `ApplicationV2` com `HandlebarsApplicationMixin`, ES Modules, configurações oficiais de `game.settings`, documentos incorporados de ator e o socket próprio `module.alchemy-system`.[1] [2]
+
+## Instalação
+
+Para instalação manual, copie o conteúdo deste projeto para `{FoundryData}/Data/modules/alchemy-system/`. **A pasta instalada deve se chamar ****`alchemy-system`**, pois o identificador do manifesto precisa corresponder ao nome da pasta. O diretório de entrega pode se chamar `alchemy-module`, mas deve ser renomeado durante a instalação manual.[1]
+
+Reinicie o Foundry, abra o mundo dnd5e, acesse **Gerenciar Módulos**, ative **Sistema de Alquimia** e recarregue o mundo. O módulo está funcionando quando um botão de frasco aparece próximo à entrada do chat. O Mestre também encontra uma ferramenta de administração nos controles de Token.
+
+## Primeiro uso
+
+O módulo identifica um personagem nesta ordem: primeiro token controlado, depois personagem atribuído ao usuário e, por fim, um ator que o usuário possua. O jogador abre a aplicação pelo botão no chat ou pela API:
+
+```
+game.modules.get("alchemy-system").api.open();
+// ou
+AlchemyModule.open();
+```
+
+Por padrão, personagens novos não conhecem receitas. O Mestre abre **Administração de Alquimia**, escolhe o personagem e marca as receitas iniciais. Alternativamente, se experimentação e descoberta automática estiverem ativas, o personagem aprende uma receita ao testar a combinação correta.
+
+## Ingredientes
+
+A identificação prioriza a flag própria:
+
+```
+await item.setFlag("alchemy-system", "ingredient", {
+  category: "Erva",
+  rarity: "common",
+  properties: ["cura", "natural"],
+  potency: 1,
+  toxicity: 0,
+  stability: 2,
+  tags: ["restauradora"]
+});
+```
+
+O módulo também aceita a estrutura legada `flags.alchemy` e, se a configuração correspondente estiver ativa, usa tipo e palavras do nome como fallback. Itens `loot`, `consumable`, `equipment` ou `tool` com nomes como “erva”, “raiz”, “cogumelo”, “cristal”, “essência” ou “reagente” podem ser detectados. A quantidade vem de `item.system.quantity`.
+
+A API permite criar um ingrediente corretamente marcado:
+
+```
+await AlchemyModule.addIngredient(actor, {
+  name: "Erva Vermelha",
+  quantity: 3,
+  category: "Erva",
+  properties: ["cura", "natural"]
+});
+```
+
+## Fluxo do jogador
+
+Na aba **Criar e experimentar**, receitas conhecidas informam disponibilidade. **Fabricar** escolhe os documentos de inventário correspondentes e envia uma solicitação ao Mestre ativo. O executor revalida permissão, receita, IDs, quantidades e equipamento. Ele então realiza o teste opcional, atualiza quantidades, cria o item e registra histórico.
+
+Na experimentação, o jogador seleciona dois ou três documentos diferentes. Uma combinação correta pode produzir o item e desbloquear a receita. Uma combinação desconhecida segue a política mundial: falha simples ou mistura defeituosa. O consumo em falhas é configurável.
+
+As abas restantes exibem receitas conhecidas, receitas desconhecidas segundo a política de ocultação, histórico individual e anotações gerais privadas. Favoritos são persistidos no ator.
+
+## Administração do Mestre
+
+O painel administrativo oferece biblioteca global, editor, duplicação, exclusão, importação, exportação, restauração dos exemplos, conhecimento individual e logs. O campo de ingredientes usa uma linha por requisito:
+
+```
+1|Erva Vermelha
+1|Água Purificada
+```
+
+Receitas por propriedade usam `@` e `+`:
+
+```
+1|@cura+natural
+1|@líquido
+```
+
+Cada receita aceita exatamente dois ou três requisitos. O editor também define tipo de resultado, quantidade, descrição, fórmula informativa, teste, CD, equipamento e tempo em minutos. O tempo é armazenado para expansão; a versão 1.0 executa produção imediatamente.
+
+Para conceder ou bloquear receitas, selecione um ator, marque ou desmarque as receitas e salve. Logs globais mantêm as 500 entradas mais recentes produzidas pelo executor Mestre. Históricos individuais possuem limite configurável entre 25 e 500 entradas.
+
+## Configurações
+
+| Grupo | Configurações principais |
+| --- | --- |
+| Conhecimento | Ativar conhecimento individual, descoberta automática e política de receitas desconhecidas |
+| Criação | Consumo, consumo em falha, falhas, experimentação e resultado defeituoso |
+| Testes | Ativar testes por receita; a receita define perícia, atributo ou fórmula e CD |
+| Requisitos | Exigir ou ignorar equipamentos cadastrados na receita |
+| Interface | Tema local: pergaminho, escuro ou claro |
+| Comunicação | Chat para todos, proprietários, Mestre ou desativado |
+| Administração | Leitura opcional de notas, limite de histórico e modo de depuração |
+
+As configurações mundiais só podem ser alteradas pelo Mestre. Tema e tutorial são locais ao navegador.
+
+## Testes de alquimia
+
+Quando possível, o motor chama métodos nativos dnd5e para perícia ou atributo. Se a API do sistema não estiver disponível, ele avalia uma `Roll` do Foundry. O resultado é classificado como sucesso crítico em 20 natural, sucesso ao alcançar a CD, sucesso parcial até dois pontos abaixo, falha ou falha crítica em 1 natural. Sucesso crítico produz uma unidade adicional; sucesso parcial usa qualidade fraca; falhas seguem as configurações mundiais.
+
+## Segurança, concorrência e compensação
+
+Toda execução revalida os dados. Solicitações de jogador são delegadas ao primeiro Mestre ativo por um protocolo de socket com resposta direcionada e timeout. O executor testa propriedade do ator em nome do solicitante. Um bloqueio local por ator serializa solicitações no cliente executor, e uma flag temporária torna o estado observável. Esse desenho protege contra clique duplo, repetição acidental e concorrência entre jogadores quando há um Mestre ativo.
+
+O consumo atualiza os itens em uma única chamada `updateEmbeddedDocuments`. Itens zerados não são excluídos, o que permite compensação. Se a criação do resultado falhar, o motor restaura as quantidades anteriores. Foundry não oferece uma transação ACID única que combine atualizações e criação de documentos; portanto, este é um **padrão de transação compensatória**, não uma transação de banco de dados.
+
+## Midi-QOL e Active Effects
+
+A integração é detectada por `game.modules.get("midi-qol")?.active`. Sem Midi-QOL, itens continuam sendo criados normalmente. Com ele ativo, flags configuradas em `result.midiFlags` são copiadas para `flags.midi-qol`, e Active Effects da receita são incorporados ao item. O módulo evita chamar funções internas instáveis do Midi-QOL.
+
+Venenos guardam metadados como doses, aplicação, CD, salvaguarda, dano e condições em `flags.alchemy-system.poison`. A API `applyPoisonToWeapon(actor, poison, weapon)` consome uma unidade do veneno e registra `flags.alchemy-system.appliedPoison` na arma. Uma futura macro Midi-QOL pode consumir ataques restantes.
+
+## Armazenamento
+
+| Dado | Local |
+| --- | --- |
+| Biblioteca global | `game.settings`: `alchemy-system.recipes` |
+| Logs do Mestre | `game.settings`: `alchemy-system.gmLogs`, máximo 500 |
+| Conhecimento | `actor.flags.alchemy-system.knowledge` |
+| Histórico | `actor.flags.alchemy-system.history`, limite configurável |
+| Anotações | `actor.flags.alchemy-system.notes` |
+| Favoritos | `actor.flags.alchemy-system.favorites` |
+| Progressão básica | `actor.flags.alchemy-system.progression` |
+| Bloqueio temporário | `actor.flags.alchemy-system.craftLock` |
+
+O campo `schemaVersion` sustenta migrações futuras. A inicialização valida receitas antigas e grava a versão atual.
+
+## API pública
+
+A API está disponível em `game.modules.get("alchemy-system").api` e `globalThis.AlchemyModule`.
+
+| Método | Função |
+| --- | --- |
+| `open(actor?, options?)` | Abre a aplicação do jogador |
+| `openGM(options?)` | Abre o painel administrativo |
+| `getRecipes()` / `getRecipe(id)` | Consulta a biblioteca |
+| `createRecipe(data)` / `updateRecipe(data)` | Valida e salva receita; requer Mestre |
+| `deleteRecipe(id)` | Exclui receita; requer Mestre |
+| `unlockRecipe(actor, id)` / `lockRecipe(actor, id)` | Controla conhecimento |
+| `craftRecipe(actor, recipeId, ingredientIds)` | Fabrica uma receita conhecida |
+| `experiment(actor, ingredientIds)` | Executa experimentação |
+| `getIngredients(actor)` | Lista ingredientes detectados |
+| `addIngredient(actor, data)` | Cria item marcado como ingrediente |
+| `getPlayerHistory(actor)` | Consulta histórico individual |
+| `applyPoisonToWeapon(actor, poison, weapon)` | Consome dose e marca a arma |
+| `midiStatus()` | Informa disponibilidade e versão do Midi-QOL |
+
+Exemplo:
+
+```
+const api = game.modules.get("alchemy-system").api;
+const ingredients = api.getIngredients(actor);
+await api.craftRecipe(actor, "minor-healing-potion", ingredients.slice(0, 2).map(i => i.id));
+```
+
+## Hooks para desenvolvedores
+
+| Hook | Argumentos | Comportamento |
+| --- | --- | --- |
+| `beforeAlchemyCraft` | `{actor, recipe, assignments, experiment, requestUser}` | Cancelável ao retornar `false`; não deve usar callback assíncrono |
+| `afterAlchemyCraft` | `entry, createdItems` | Disparado depois do histórico e chat |
+| `onRecipeDiscovered` | `actor, recipeId, options` | Disparado quando uma receita é aprendida |
+| `onAlchemyFailure` | `historyEntry` | Disparado em falha conhecida ou combinação inválida |
+| `alchemyRecipesUpdated` | `recipes` | Disparado após salvar a biblioteca global |
+
+Hooks canceláveis do Foundry são síncronos e não aguardam `Promise`; integrações devem respeitar essa limitação.[3]
+
+## Estrutura do projeto
+
+```
+alchemy-system/
+├── module.json
+├── README.md
+├── LICENSE
+├── assets/
+├── lang/pt-BR.json
+├── scripts/
+│   ├── main.js, api.js, constants.js, utils.js
+│   ├── data.js, actor-data.js, inventory.js, crafting.js
+│   ├── settings.js, socket.js, midi.js
+│   └── apps/alchemy-app.js, apps/gm-app.js
+├── styles/alchemy.css
+├── templates/alchemy-main.hbs, gm-panel.hbs
+└── tools/validate.mjs
+```
+
+## Solução de problemas
+
+Se o botão não aparecer, confirme o nome da pasta, a ativação do módulo e o sistema dnd5e. Se ingredientes não aparecerem, marque-os com a flag documentada ou ative o fallback de nome. Se uma fabricação ficar bloqueada, aguarde 30 segundos; locks antigos expiram automaticamente. Se testes nativos mudarem após uma atualização do dnd5e, o fallback por `Roll` preserva o núcleo. Ative **Modo de depuração** e consulte o console do navegador para detalhes.
+
+## Escopo e roadmap
+
+O núcleo implementa dados funcionais para propriedades, qualidade, quantidade, venenos, progressão e tempo. A versão 1.0 não agenda produção em tempo real, não oferece barra de progresso persistente, não executa automaticamente efeitos de veneno a cada ataque e não possui especializações mecânicas. Essas extensões devem reutilizar os campos existentes, a API e os hooks.
+
+O roadmap recomendado inclui fila de produção baseada em tempo de campanha, estações como documentos de cena, editor visual de Active Effects, doses automatizadas por Midi-QOL, anotações por receita e ingrediente na interface, filtros avançados de logs e migrações com backup prévio.
+
+## Validação local
+
+Execute na raiz do módulo:
+
+```bash
+node tools/validate.mjs
+```
+
+O script valida JSON, sintaxe de todos os ES Modules, caminhos do manifesto, imports relativos, receitas de exemplo e correspondência de ingredientes.
+
+## Referências
+
+[1]: https://foundryvtt.com/article/module-development/ "Introduction to Module Development"
+
+[2]: https://foundryvtt.wiki/en/development/api/applicationv2 "ApplicationV2"
+
+[3]: https://foundryvtt.com/api/v13/classes/foundry.helpers.Hooks.html "Foundry VTT v13 Hooks API"
