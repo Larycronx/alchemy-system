@@ -1,4 +1,4 @@
-# 🧪 Sistema de Alquimia
+# Sistema de Alquimia
 
 <p align="center">
 <img src="assets/alchemy.svg" alt="Frasco de alquimia" width="112" />
@@ -12,7 +12,7 @@ Um laboratório completo para campanhas de <strong>Foundry VTT v13</strong> com 
 
 O **Sistema de Alquimia** transforma o inventário do personagem em um laboratório vivo: jogadores aprendem receitas, combinam ingredientes, descobrem resultados e registram sua evolução. Mestres controlam a biblioteca, o conhecimento individual e toda a administração da fabricação — sem processo de compilação e sem dependências JavaScript externas.
 
-## ✨ O que o módulo oferece
+##  O que o módulo oferece
 
 | Para jogadores | Para Mestres |
 | --- | --- |
@@ -23,7 +23,7 @@ O **Sistema de Alquimia** transforma o inventário do personagem em um laborató
 
 > **Estado do projeto:** versão **1.2.0**, núcleo funcional estável e validado para Foundry VTT v13.
 
-## 🚀 Comece em poucos minutos
+##  Comece em poucos minutos
 
 1. No Foundry, crie um módulo com o mesmo nome.
 
