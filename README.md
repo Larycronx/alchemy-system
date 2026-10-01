@@ -442,6 +442,6 @@ Distribuído sob a [licença MIT](LICENSE).
 <br>
 
 *Forjado para campanhas de fantasia, descobertas perigosas<br>
-e poções que talvez não devessem ser bebidas.*
+e poções que talvez não devessem ser tomadas.*
 
 </div>
