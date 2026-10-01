@@ -1,163 +1,423 @@
+<div align="center">
+<img src="assets/alchemy.svg" alt="Ícone do Sistema de Alquimia" width="96" />
+
 # Sistema de Alquimia
 
-Módulo de alquimia para **Foundry VTT v13** com o sistema **D&D 5e**. Permite descobrir receitas, consumir ingredientes, fabricar poções e venenos, registrar histórico e administrar receitas pelo painel do Mestre.
+**Conhecimento, experimentação e produção para Foundry VTT**
 
-![Foundry VTT](https://img.shields.io/badge/Foundry%20VTT-v13-8b5cf6)
-![D&D 5e](https://img.shields.io/badge/D%26D%205e-supported-ef4444)
-![Idioma](https://img.shields.io/badge/idioma-pt--BR-16a34a)
+Um módulo de alquimia para campanhas de **D&D 5e**, com receitas descobríveis, ingredientes, poções, venenos, progressão e ferramentas completas para jogadores e Mestres.
+
+<p>
+<img src="https://img.shields.io/badge/Foundry%20VTT-v13-7c3aed?style=for-the-badge&logo=foundry-virtual-tabletop&logoColor=white" alt="Foundry VTT v13" />
+    <img src="https://img.shields.io/badge/D%26D%205e-4.0.0%2B-b91c1c?style=for-the-badge" alt="D&D 5e 4.0.0 ou superior" />
+    <img src="https://img.shields.io/badge/idioma-pt--BR-15803d?style=for-the-badge" alt="Português do Brasil" />
+    <img src="https://img.shields.io/badge/licença-MIT-d97706?style=for-the-badge" alt="Licença MIT" />
+  </p>
+</div>
+
+> *“Toda grande descoberta começa com um ingrediente, uma hipótese e a coragem de misturá-los.”*
+
+---
+
+## Visão geral
+
+O **Sistema de Alquimia** adiciona uma camada completa de criação e descoberta ao seu mundo de Foundry VTT. Personagens podem reunir ingredientes, aprender fórmulas, experimentar combinações e fabricar resultados — enquanto o Mestre controla o catálogo, o conhecimento individual e as regras da oficina.
+
+A interface acompanha a atmosfera do módulo com três temas visuais:
+
+- **Pergaminho** — para uma bancada clássica de estudos;
+
+- **Escuro** — para laboratórios, masmorras e oficinas noturnas;
+
+- **Claro** — para uma leitura mais limpa e luminosa.
 
 ## Recursos
 
-- Receitas de poções, venenos e itens alquímicos.
-- Experimentação com dois ou três ingredientes.
-- Conhecimento individual por personagem e descoberta automática.
-- Testes de alquimia com perícias, atributos ou fórmulas.
-- Consumo de ingredientes com restauração compensatória em caso de erro.
-- Histórico de fabricação, favoritos, anotações e progressão alquímica.
-- Painel do Mestre para editar, importar, exportar e distribuir receitas.
-- Integração opcional com Midi-QOL.
-- Interface em português do Brasil, com temas claro, escuro e pergaminho.
+### Para personagens
+
+- Descoberta e conhecimento individual de receitas;
+
+- Biblioteca de poções, venenos e itens especiais;
+
+- Experimentação livre com **2 ou 3 ingredientes**;
+
+- Testes de alquimia usando perícias, atributos ou fórmulas;
+
+- Consumo automático de ingredientes;
+
+- Restauração compensatória quando uma tentativa não deve consumir reagentes;
+
+- Histórico de fabricação por personagem;
+
+- Favoritos e anotações privadas;
+
+- Progressão alquímica com XP, níveis e especializações;
+
+- Uso de poções, aplicação de venenos e efeitos integrados ao D&D 5e;
+
+- Integração opcional com **Midi-QOL**.
+
+### Para Mestres
+
+- Painel administrativo de alquimia;
+
+- Criação, edição, duplicação e exclusão de receitas;
+
+- Importação e exportação do catálogo;
+
+- Distribuição ou remoção de conhecimento dos personagens;
+
+- Controle de histórico, anotações e progressão;
+
+- Restauração das receitas de exemplo;
+
+- Logs administrativos;
+
+- Configuração de receitas secretas, descobríveis e requisitos de equipamento.
+
+## Conteúdo incluído
+
+| Elemento | Quantidade / detalhe |
+| --- | --- |
+| Ingredientes alquímicos | **36** na biblioteca interna |
+| Receitas padrão | **7** exemplos prontos |
+| Catálogo expandido | **41** receitas |
+| Tipos de resultado | Poção, veneno e especial |
+| Idioma da interface | Português do Brasil |
+| Temas | Pergaminho, escuro e claro |
+| Sistema compatível | D&D 5e 4.0.0 ou superior |
+| Foundry VTT | v13 |
+
+Entre os ingredientes disponíveis estão ervas, raízes, cogumelos, cristais, pós minerais, essências elementais, partes de criaturas, líquidos e reagentes estabilizadores.
 
 ## Compatibilidade
 
-| Componente | Versão |
+| Componente | Compatibilidade |
 | --- | --- |
-| Foundry VTT | v13 |
-| Sistema D&D 5e | 4.0.0 ou superior compatível com v13 |
-| Midi-QOL | Opcional |
+| Foundry Virtual Tabletop | v13 |
+| Sistema D&D 5e | 4.0.0 ou superior, compatível com Foundry v13 |
+| Midi-QOL | Opcional — usado para automação de itens e efeitos |
+
+> O módulo funciona sem o Midi-QOL. Quando instalado, a integração fica disponível para os recursos compatíveis.
 
 ## Instalação
 
-1. Baixe ou clone este repositório em `FoundryData/Data/modules/alchemy-system`.
-2. Confirme que o arquivo `module.json` está diretamente nessa pasta.
-3. Reinicie o Foundry VTT.
-4. No mundo D&D 5e, abra **Gerenciar Módulos** e ative **Sistema de Alquimia**.
+### Instalação manual
 
-O identificador da pasta precisa ser `alchemy-system`.
+1. Baixe este repositório ou clone-o dentro da pasta de módulos do Foundry:
 
-## Ingredientes
+   ```
+   FoundryData/Data/modules/alchemy-system
+   ```
 
-O módulo possui **36 ingredientes alquímicos** na biblioteca interna, incluindo:
+1. Confirme que o arquivo `module.json` está diretamente dentro da pasta `alchemy-system`.
 
-- Erva Vermelha, Folha Amarga, Flor Lunar e Raiz Entorpecente.
-- Cogumelo Azul, Esporo Sonífero, Cristal Elemental e Cristal de Quartzo.
-- Pó de Diamante, Pó de Esmeralda, Escama de Dragão e Pena de Águia.
-- Olho de Basilisco e Casca de Basilisco.
-- Núcleo Ácido, Faísca Elétrica, Essência Energética, Cinza Ígnea e Geada Elemental.
-- Fragmento Necrótico, Cristal Psíquico, Pó Radiante, Núcleo Trovejante e Antitoxina Concentrada.
-- Essência Mágica, Essência de Sombra, Água Purificada e Água de Fonte Feérica.
-- Álcool Alquímico, Óleo Estabilizador, Glândula Tóxica e venenos raros.
+1. Reinicie o Foundry VTT.
 
-### Criar os ingredientes
+1. Abra um mundo baseado em **D&D 5e**.
 
-O macro [macros/create-alchemy-ingredients.js](macros/create-alchemy-ingredients.js) cria ou atualiza todos os ingredientes no mundo ou em um compêndio de itens.
+1. Acesse **Configurações → Gerenciar Módulos**.
 
-#### Tutorial: criar no compêndio
+1. Ative o **Sistema de Alquimia**.
 
-1. Abra o arquivo [macros/create-alchemy-ingredients.js](macros/create-alchemy-ingredients.js) e copie todo o conteúdo.
-2. No Foundry, abra **Macros** e crie um macro do tipo **Script**.
-3. Cole o conteúdo e confirme que estas opções estão configuradas:
+> O identificador da pasta deve ser exatamente `alchemy-system`.
 
-```js
-const DESTINO = "compendium";
-const COMPENDIUM_COLLECTION = "";
-const QUANTIDADE_INICIAL = 3;
-const ATUALIZAR_EXISTENTES = true;
+## Preparando os ingredientes
+
+O módulo inclui o macro [`macros/create-alchemy-ingredients.js`](macros/create-alchemy-ingredients.js), que cria ou atualiza os 36 ingredientes alquímicos no mundo ou em um compêndio de itens.
+
+### Criar os ingredientes em um compêndio
+
+1. Abra [`macros/create-alchemy-ingredients.js`](macros/create-alchemy-ingredients.js).
+
+1. Copie todo o conteúdo do arquivo.
+
+1. No Foundry, abra **Macros** e crie um macro do tipo **Script**.
+
+1. Cole o conteúdo e configure as constantes no início do macro:
+
+   ```
+   const DESTINO = "compendium";
+   const COMPENDIUM_COLLECTION = "";
+   const QUANTIDADE_INICIAL = 3;
+   const ATUALIZAR_EXISTENTES = true;
+   ```
+
+1. Execute o macro como Mestre.
+
+1. Se `COMPENDIUM_COLLECTION` estiver vazio, selecione o compêndio na janela exibida.
+
+Para apontar diretamente para um compêndio específico:
+
 ```
-
-4. Execute o macro como Mestre.
-5. Se `COMPENDIUM_COLLECTION` estiver vazio, selecione o compêndio na janela exibida.
-6. Se quiser abrir um compêndio específico sem perguntar, informe sua collection:
-
-```js
 const COMPENDIUM_COLLECTION = "world.alchemy-ingredients";
 ```
 
-Substitua `world.alchemy-ingredients` pelo identificador exibido na lista de compêndios. O compêndio precisa ser de **Itens** e estar desbloqueado para escrita.
+Substitua `world.alchemy-ingredients` pelo identificador do seu compêndio. Ele precisa ser um compêndio de **Itens** e estar desbloqueado para escrita.
 
-O macro cria ou atualiza os **36 ingredientes**, evita duplicatas pelo nome e aplica a flag `alchemy-system.ingredient`. Ao concluir, o Foundry exibirá quantos itens foram criados e atualizados.
+O macro:
 
-Os itens recebem a flag `alchemy-system.ingredient`, quantidade inicial e propriedades alquímicas. O macro evita duplicatas e atualiza flags de itens existentes.
+- cria ou atualiza os 36 ingredientes;
 
-## Fabricação e compêndio D&D 5e
+- evita duplicatas pelo nome;
 
-As receitas mapeadas usam os itens reais do pack `dnd5e.items` como origem. Quando uma poção é fabricada, o módulo copia para o inventário do ator:
+- aplica a flag `alchemy-system.ingredient`;
 
-- descrição original;
-- imagem;
-- tipo e dados do item;
-- efeitos e configurações do D&D 5e;
-- identificação da origem em `flags.core.sourceId`.
+- define a quantidade inicial;
 
-Isso cria uma cópia mundial do documento do compêndio, que é o comportamento normal do Foundry VTT. A receita de exemplo **Poção de Cura Superior** usa o UUID `Compendium.dnd5e.items.Item.5m9ErO9In8Uc5yyf`.
+- registra as propriedades alquímicas;
 
-Se uma receita configurada com UUID ou aliases não encontrar o item no compêndio, a fabricação é interrompida com uma mensagem clara em vez de criar um item genérico.
+- informa no final quantos itens foram criados e atualizados.
 
-## Uso rápido
+## Como usar
 
-O jogador pode abrir a interface pelo botão do módulo ou pela API:
+### Jogadores
 
-```js
-game.modules.get("alchemy-system").api.open();
+A interface pode ser aberta de qualquer uma destas formas:
+
+- pelo botão de frasco na barra de chat;
+
+- pelo botão de alquimia na ficha do personagem;
+
+- selecionando um token vinculado a um personagem;
+
+- pela API pública do módulo.
+
+Para fabricar uma receita, o personagem deve possuir:
+
+- os ingredientes necessários na quantidade exigida;
+
+- conhecimento da receita, quando o conhecimento individual estiver ativo;
+
+- o equipamento requerido, como **Kit de Alquimia**, quando essa opção estiver habilitada.
+
+### Mestres
+
+O painel administrativo pode ser aberto pelo controle de token ou pela API:
+
 ```
-
-O Mestre pode abrir o painel administrativo com:
-
-```js
 game.modules.get("alchemy-system").api.openGM();
 ```
 
-Para fabricar, o personagem precisa conhecer a receita, possuir os ingredientes na quantidade necessária e, quando configurado, ter o equipamento exigido, como **Kit de Alquimia**.
+No painel, o Mestre pode administrar receitas, ingredientes, conhecimento dos personagens, histórico, progressão, importação e exportação.
 
-## Configurações
+## Experimentação
 
-As configurações mundiais permitem controlar:
+A experimentação permite selecionar exatamente **2 ou 3 ingredientes** e testar uma combinação.
 
-- conhecimento individual e descoberta automática;
-- experimentação e resultado de combinações desconhecidas;
-- consumo de ingredientes em sucesso ou falha;
-- testes, falhas e resultados parciais;
+Dependendo das configurações do mundo, uma combinação pode:
+
+- revelar uma receita válida;
+
+- descobrir automaticamente uma fórmula;
+
+- produzir uma poção ou veneno;
+
+- gerar uma mistura defeituosa;
+
+- resultar em falha simples;
+
+- executar um teste de alquimia com CD configurável.
+
+As combinações são revalidadas no momento da execução para evitar resultados inconsistentes com o inventário atual.
+
+## Fabricação e itens do D&D 5e
+
+As receitas mapeadas usam os itens reais do compêndio `dnd5e.items` como origem. Ao fabricar um item, o módulo preserva:
+
+- descrição original;
+
+- imagem;
+
+- tipo e dados do item;
+
+- efeitos e configurações do D&D 5e;
+
+- identificação da origem em `flags.core.sourceId`.
+
+A fabricação cria uma cópia mundial do documento do compêndio, seguindo o comportamento normal do Foundry VTT.
+
+A receita de exemplo **Poção de Cura Superior** utiliza o seguinte UUID:
+
+```
+Compendium.dnd5e.items.Item.5m9ErO9In8Uc5yyf
+```
+
+Se uma receita configurada por UUID ou aliases não encontrar o item correspondente, a fabricação é interrompida com uma mensagem clara — sem criar um item genérico silenciosamente.
+
+## Configurações disponíveis
+
+As configurações do módulo permitem controlar:
+
+- conhecimento individual por personagem;
+
+- experimentação e descoberta automática;
+
+- consumo de ingredientes em sucessos e falhas;
+
+- testes, falhas, sucessos parciais e falhas críticas;
+
 - exigência de equipamentos;
-- visibilidade das mensagens no chat;
-- tema da interface e limites de histórico.
+
+- identificação de ingredientes por nome;
+
+- visibilidade das receitas desconhecidas;
+
+- modo de falha para combinações inválidas;
+
+- visibilidade dos cartões no chat;
+
+- leitura de anotações pelo Mestre;
+
+- limite do histórico por personagem;
+
+- tema da interface;
+
+- modo de depuração.
+
+## API pública
+
+Abrir a interface do jogador:
+
+```
+game.modules.get("alchemy-system").api.open();
+```
+
+Abrir a interface do jogador para um ator específico:
+
+```
+game.modules.get("alchemy-system").api.open(actor);
+```
+
+Abrir o painel do Mestre:
+
+```
+game.modules.get("alchemy-system").api.openGM();
+```
+
+A API também fica disponível globalmente como `AlchemyModule`.
 
 ## Atualização de receitas
 
-O módulo mantém um `schemaVersion` e migra receitas salvas no mundo. Ao atualizar, entre no mundo como Mestre para que os novos aliases e UUIDs de compêndio sejam aplicados às receitas existentes.
+O módulo mantém um `schemaVersion` para migrar receitas salvas no mundo.
 
-## Desenvolvimento e validação
+Após atualizar o módulo:
 
-O projeto não usa processo de build nem dependências externas. Para validar a instalação local:
+1. entre no mundo como Mestre;
 
-```powershell
+1. aguarde o módulo concluir a inicialização;
+
+1. abra o painel administrativo;
+
+1. confirme se as receitas e seus mapeamentos foram atualizados.
+
+Os novos aliases e UUIDs de compêndio são aplicados às receitas existentes durante a migração.
+
+## Desenvolvimento
+
+O projeto não possui processo de build nem dependências externas obrigatórias. Para validar a instalação local, execute na raiz do repositório:
+
+```bash
 node tools/validate.mjs
 node tools/regression.mjs
 ```
 
-A validação verifica JSON, manifesto, imports, sintaxe JavaScript, cobertura dos 36 ingredientes e correspondência do inventário.
+### Validação
 
-## Estrutura
+O script `tools/validate.mjs` verifica:
 
-```text
-assets/       Ícones SVG
-lang/         Traduções
-macros/       Macros do Foundry
-scripts/      Lógica, dados, interface e integração
-styles/       Estilos
-templates/    Templates Handlebars
-tools/        Validação e regressão
+- JSON do manifesto e das traduções;
+
+- campos esperados no `module.json`;
+
+- caminhos declarados no manifesto;
+
+- sintaxe dos arquivos JavaScript;
+
+- existência dos imports relativos;
+
+- integridade das receitas de exemplo;
+
+- correspondência dos ingredientes no inventário.
+
+### Regressão
+
+O script `tools/regression.mjs` verifica:
+
+- as 7 receitas padrão;
+
+- as 41 receitas expandidas;
+
+- receitas específicas, como invisibilidade e pele de pedra;
+
+- propriedades da antitoxina concentrada;
+
+- validação de todas as receitas;
+
+- uso de 2 ou 3 ingredientes por receita.
+
+## Estrutura do projeto
+
+```
+alchemy-system/
+├── assets/                 # Ícones SVG do módulo
+├── lang/                   # Traduções, atualmente pt-BR
+├── macros/                 # Macros para criação e manutenção de ingredientes
+├── scripts/                # API, dados, fabricação, inventário e integração
+├── styles/                 # Temas e estilos da interface
+├── templates/              # Templates Handlebars das interfaces
+├── tools/                  # Validação e testes de regressão
+├── LICENSE                 # Licença MIT
+├── module.json             # Manifesto do módulo
+└── README.md               # Este documento
 ```
 
-## Contribuição
+## Contribuindo
 
-Contribuições são bem-vindas. Abra uma issue para relatar problemas ou envie um pull request com uma descrição clara da mudança e dos testes executados.
+Contribuições são bem-vindas.
+
+Antes de abrir um pull request:
+
+1. descreva claramente o problema ou a melhoria;
+
+1. mantenha a interface e as traduções consistentes;
+
+1. execute os scripts de validação e regressão;
+
+1. informe no pull request quais testes foram executados;
+
+1. evite alterar receitas existentes sem documentar a mudança.
+
+Para relatar um problema, abra uma [issue](https://github.com/Larycronx/alchemy-system/issues) com:
+
+- versão do Foundry VTT;
+
+- versão do D&D 5e;
+
+- versão do módulo;
+
+- módulos adicionais ativos;
+
+- passos para reproduzir o problema;
+
+- mensagens relevantes do console, se houver.
 
 ## Licença
 
-Consulte [LICENSE](LICENSE).
+Este projeto é distribuído sob a [licença MIT](LICENSE).
 
 ## Links
 
-- [Foundry VTT](https://foundryvtt.com/)
-- [Sistema D&D 5e](https://foundryvtt.com/packages/dnd5e/)
 - [Repositório do projeto](https://github.com/Larycronx/alchemy-system)
+
+- [Foundry Virtual Tabletop](https://foundryvtt.com/)
+
+- [Sistema D&D 5e](https://foundryvtt.com/packages/dnd5e/)
+
+- [Issues e sugestões](https://github.com/Larycronx/alchemy-system/issues)
+
+---
+
+<div align="center">
+<sub>Forjado para campanhas de fantasia, descobertas perigosas e poções que talvez não devessem ser bebidas.</sub>
+</div>
