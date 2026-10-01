@@ -548,6 +548,16 @@
   padding: 10px;
 }
 
+.ingredient-library-card.missing {
+  border-color: #b4232f;
+  background: color-mix(in srgb, var(--alc-panel) 86%, #b4232f);
+}
+
+.ingredient-library-card.missing h3,
+.ingredient-library-card.missing p {
+  color: #f06a73;
+}
+
 .ingredient-library-card img {
   width: 44px;
   height: 44px;

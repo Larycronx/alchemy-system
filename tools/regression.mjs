@@ -9,7 +9,7 @@
  *
  * O que este script verifica:
  * 1. Número correto de receitas padrão (7)
- * 2. Número correto de receitas expandidas (30)
+ * 2. Número correto de receitas expandidas (41)
  * 3. Receitas específicas existem
  * 4. Todas as receitas passam pela validação
  * 5. Todas as receitas têm 2 ou 3 ingredientes
@@ -23,7 +23,9 @@ import { DEFAULT_RECIPES, EXPANDED_RECIPES, validateRecipe } from "../scripts/da
 assert.equal(DEFAULT_RECIPES.length, 7);
 
 // Verifica número de receitas expandidas
-assert.equal(EXPANDED_RECIPES.length, 30);
+assert.equal(EXPANDED_RECIPES.length, 41);
+const antitoxin = EXPANDED_RECIPES.find(recipe => recipe.id === "antitoxin-concentrated");
+assert.deepEqual(antitoxin?.result?.ingredient?.properties, ["veneno", "resistência", "antídoto"]);
 
 // Verifica receitas específicas existem
 assert(EXPANDED_RECIPES.some(recipe => recipe.id === "potion-invisibility"));

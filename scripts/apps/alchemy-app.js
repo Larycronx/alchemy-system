@@ -133,10 +133,16 @@ export class AlchemyApp extends HandlebarsApplicationMixin(ApplicationV2) {
       ingredients: inventory.map(item => ({ ...item, item: undefined })),
       knownRecipes: filtered.filter(recipe => recipe.known),
       catalogRecipes: filtered.filter(recipe => recipe.known),
-      ingredientLibrary: getIngredientLibrary(allRecipes).map(item => ({
-        ...item,
-        owned: inventory.find(found => found.normalizedName === normalizeText(item.name))?.quantity ?? 0
-      })),
+      ingredientLibrary: getIngredientLibrary(allRecipes).map(item => {
+        const owned = inventory
+          .filter(found => found.normalizedName === normalizeText(item.name))
+          .reduce((total, found) => total + Number(found.quantity || 0), 0);
+        return {
+          ...item,
+          owned,
+          missing: owned <= 0
+        };
+      }),
       allKnownCraftable: filtered.filter(recipe => recipe.known),
       history: getHistory(this.actor).map(entry => ({
         ...entry,
@@ -165,8 +171,17 @@ export class AlchemyApp extends HandlebarsApplicationMixin(ApplicationV2) {
     const search = this.element.querySelector("[data-alchemy-search]");
     search?.addEventListener("input", event => {
       this.query = event.currentTarget.value;
+      const cursorPosition = event.currentTarget.selectionStart ?? this.query.length;
       clearTimeout(this._searchTimeout);
-      this._searchTimeout = setTimeout(() => this.render(), 180);
+      this._searchTimeout = setTimeout(async () => {
+        await this.render();
+        const nextSearch = this.element.querySelector("[data-alchemy-search]");
+        if (!nextSearch) return;
+
+        nextSearch.focus();
+        const nextPosition = Math.min(cursorPosition, nextSearch.value.length);
+        nextSearch.setSelectionRange(nextPosition, nextPosition);
+      }, 180);
     });
 
     // Listeners para filtros de tipo
@@ -320,7 +335,7 @@ export class AlchemyApp extends HandlebarsApplicationMixin(ApplicationV2) {
    */
   static gmAdmin() {
     if (!game.user?.isGM) return;
-    game.modules.get(MODULE_ID)?.api?.openGM({ actorId: this.actor.id });
+    game.modules.get(MODULE_ID)?.api?.openGM({ actorId: this.actor?.id });
   }
 
   /**

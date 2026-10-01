@@ -26,6 +26,36 @@ function extractRoll(rolled) {
   return rolled ?? null;
 }
 
+function alchemyToolTraining(actor) {
+  const tools = actor?.system?.tools ?? {};
+  const entries = Object.entries(tools).filter(([key, tool]) => {
+    const text = normalizeForComparison(`${key} ${tool?.name ?? ""} ${tool?.label ?? ""}`);
+    return text.includes("alchemist") || text.includes("alquim") || text.includes("kit de alquimia");
+  });
+
+  const proficient = entries.some(([, tool]) => {
+    const value = Number(tool?.value ?? tool?.proficient ?? 0);
+    return value >= 1 || tool?.proficient === true;
+  });
+  const expertise = entries.some(([, tool]) => {
+    const value = Number(tool?.value ?? tool?.proficient ?? 0);
+    return value >= 2 || tool?.expertise === true;
+  });
+
+  return { proficient, expertise };
+}
+
+function alchemyRollFormula(actor) {
+  const intelligence = Number(actor?.system?.abilities?.int?.mod ?? 0);
+  const proficiencyBonus = Number(actor?.system?.attributes?.prof ?? 0);
+  const training = alchemyToolTraining(actor);
+  const toolBonus = training.proficient ? proficiencyBonus * (training.expertise ? 2 : 1) : 0;
+  const totalBonus = intelligence + toolBonus;
+  const modifier = totalBonus >= 0 ? `+ ${totalBonus}` : `- ${Math.abs(totalBonus)}`;
+
+  return { formula: `1d20 ${modifier}`, training, intelligence, toolBonus };
+}
+
 /**
  * ============================================================
  * TESTE DE ALQUIMIA
@@ -75,25 +105,38 @@ export async function performAlchemyCheck(actor, recipe, { forcedOutcome = null 
   let roll;
   const config = recipe.check;
 
-  // Tenta usar rolagens nativas do dnd5e
+  // Fabricação usa Inteligência e o treinamento no Kit de Alquimia.
   try {
-    if (game.system?.id === "dnd5e" && config.type === "skill" && typeof actor.rollSkill === "function") {
-      roll = extractRoll(await actor.rollSkill({ skill: config.key }, { configure: false }, { create: true }));
-    } else if (game.system?.id === "dnd5e" && config.type === "ability" && typeof actor.rollAbilityCheck === "function") {
-      roll = extractRoll(await actor.rollAbilityCheck({ ability: config.key }, { configure: false }, { create: true }));
-    }
+    const alchemyRoll = config.type === "formula"
+      ? { formula: config.formula }
+      : alchemyRollFormula(actor);
+    roll = await new Roll(alchemyRoll.formula, actor.getRollData?.() ?? {}).evaluate();
+    roll.alchemyToolTraining = alchemyRoll.training;
+    roll.alchemyIntelligence = alchemyRoll.intelligence;
+    roll.alchemyToolBonus = alchemyRoll.toolBonus;
   } catch (error) {
-    debug("Rolagem nativa indisponível; usando fórmula de fallback", error);
+    debug("Rolagem de alquimia indisponível; usando fórmula de fallback", error);
   }
 
   // Fallback para rolagem manual
   if (!roll) {
-    const formula = config.type === "formula" ? config.formula : "1d20";
+    const formula = config.type === "formula" ? config.formula : alchemyRollFormula(actor).formula;
     roll = await new Roll(formula, actor.getRollData?.() ?? {}).evaluate();
+  }
+
+  try {
+    const training = alchemyToolTraining(actor);
+    const trainingLabel = training.expertise
+      ? "Inteligência + expertise no Kit de Alquimia"
+      : training.proficient
+        ? "Inteligência + proficiência no Kit de Alquimia"
+        : "Inteligência";
     await roll.toMessage({
       speaker: ChatMessage.getSpeaker({ actor }),
-      flavor: `${recipe.name} — CD ${config.dc}`
+      flavor: `${recipe.name} — CD ${config.dc} — ${trainingLabel}`
     });
+  } catch (error) {
+    debug("Não foi possível publicar a rolagem de alquimia no chat", error);
   }
 
   // Calcula resultado
@@ -214,7 +257,7 @@ async function outputItemData(recipe, quality, amount) {
     flags: {}
   };
 
-  item.name ??= result.name || recipe.name;
+  item.name = result.name || recipe.name;
   item.type ??= result.type || "consumable";
   item.img ??= result.img || recipe.img || PATHS.POTION_ICON;
   item.system ??= {};
@@ -238,9 +281,14 @@ async function outputItemData(recipe, quality, amount) {
       quality,
       formula: result.formula || "",
       poison: result.poison || null,
+      ingredient: result.ingredient || null,
       craftedAt: Date.now()
     }
   };
+
+  if (result.ingredient) {
+    item.flags[MODULE_ID].ingredient = result.ingredient;
+  }
 
   if (compendiumEntry?.uuid) {
     const [scope, packName, docType, id] = compendiumEntry.uuid.split(".");

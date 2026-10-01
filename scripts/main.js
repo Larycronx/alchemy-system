@@ -42,6 +42,19 @@ function refreshAlchemyWindows() {
   }
 }
 
+function patchPolyglotChatCompatibility() {
+  const polyglot = game.polyglot;
+  if (!polyglot || typeof globalThis.$ !== "function" || typeof polyglot.chatElement?.find === "function") return;
+
+  Object.defineProperty(polyglot, "chatElement", {
+    configurable: true,
+    get() {
+      const element = ui.sidebar?.popouts?.chat?.element ?? ui.chat?.element;
+      return typeof element?.find === "function" ? element : globalThis.$(element);
+    }
+  });
+}
+
 /**
  * ============================================================
  * HOOK: init
@@ -71,6 +84,7 @@ Hooks.once("init", () => {
  * ============================================================
  */
 Hooks.once("ready", async () => {
+  patchPolyglotChatCompatibility();
   registerSocket();
   await initializeData();
 

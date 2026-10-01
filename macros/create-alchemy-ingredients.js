@@ -13,7 +13,7 @@
  * 4. Para compêndio, informe o ID em COMPENDIUM_COLLECTION.
  *
  * O QUE ESTE MACRO FAZ:
- * - Cria 24 ingredientes alquímicos canônicos
+ * - Cria 36 ingredientes alquímicos canônicos
  * - Cada ingrediente é criado como Item do tipo "loot"
  * - Adiciona flags do módulo para reconhecimento automático
  * - Evita duplicatas (verifica se já existe antes de criar)
@@ -70,6 +70,11 @@ const ATUALIZAR_EXISTENTES = true;
     ["Essência Mágica", "Essência", ["arcano", "potência"]], ["Essência de Sombra", "Essência", ["invisibilidade", "escuridão"]],
     ["Água Purificada", "Líquido", ["líquido", "estável"]], ["Água de Fonte Feérica", "Líquido", ["cura", "encantamento"]],
     ["Álcool Alquímico", "Líquido", ["volátil", "tóxico"]], ["Óleo Estabilizador", "Líquido", ["estável", "veneno"]],
+    ["Núcleo Ácido", "Elemental", ["ácido", "corrosivo"]], ["Faísca Elétrica", "Elemental", ["elétrico", "energia"]],
+    ["Essência Energética", "Elemental", ["energético", "força"]], ["Cinza Ígnea", "Elemental", ["ígneo", "fogo"]],
+    ["Fragmento Necrótico", "Essência", ["necrótico", "morte"]], ["Cristal Psíquico", "Mineral", ["psíquico", "mente"]],
+    ["Pó Radiante", "Essência", ["radiante", "luz"]], ["Núcleo Trovejante", "Elemental", ["trovejante", "som"]],
+    ["Antitoxina Concentrada", "Tóxico", ["veneno", "resistência"]], ["Geada Elemental", "Elemental", ["frio", "gelo"]],
     ["Glândula Tóxica", "Tóxico", ["veneno", "dano"]], ["Veneno de Wyvern", "Tóxico", ["veneno", "perfuração"]],
     ["Veneno de Verme Púrpura", "Tóxico", ["veneno", "corrosivo"]], ["Pó de Drow", "Tóxico", ["sono", "veneno"]],
     ["Sangue de Assassino", "Tóxico", ["veneno", "morte"]]
@@ -250,7 +255,7 @@ const ATUALIZAR_EXISTENTES = true;
 // ============================================================
 // FIM DO ARQUIVO DE MACRO
 // ============================================================
-// Este macro cria 24 ingredientes alquímicos canônicos no
+// Este macro cria 36 ingredientes alquímicos canônicos no
 // mundo ou em um compêndio. Cada ingrediente é criado como
 // Item do tipo "loot" com a flag "ingredient" do módulo.
 // ============================================================

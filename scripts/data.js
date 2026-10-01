@@ -148,6 +148,11 @@ export const INGREDIENT_LIBRARY = Object.freeze([
   ["Essência Mágica", "Essência", ["arcano", "potência"]], ["Essência de Sombra", "Essência", ["invisibilidade", "escuridão"]],
   ["Água Purificada", "Líquido", ["líquido", "estável"]], ["Água de Fonte Feérica", "Líquido", ["cura", "encantamento"]],
   ["Álcool Alquímico", "Líquido", ["volátil", "tóxico"]], ["Óleo Estabilizador", "Líquido", ["estável", "veneno"]],
+  ["Núcleo Ácido", "Elemental", ["ácido", "corrosivo"]], ["Faísca Elétrica", "Elemental", ["elétrico", "energia"]],
+  ["Essência Energética", "Elemental", ["energético", "força"]], ["Cinza Ígnea", "Elemental", ["ígneo", "fogo"]],
+  ["Fragmento Necrótico", "Essência", ["necrótico", "morte"]], ["Cristal Psíquico", "Mineral", ["psíquico", "mente"]],
+  ["Pó Radiante", "Essência", ["radiante", "luz"]], ["Núcleo Trovejante", "Elemental", ["trovejante", "som"]],
+  ["Antitoxina Concentrada", "Tóxico", ["veneno", "resistência"]], ["Geada Elemental", "Elemental", ["frio", "gelo"]],
   ["Glândula Tóxica", "Tóxico", ["veneno", "dano"]], ["Veneno de Wyvern", "Tóxico", ["veneno", "perfuração"]],
   ["Veneno de Verme Púrpura", "Tóxico", ["veneno", "corrosivo"]], ["Pó de Drow", "Tóxico", ["sono", "veneno"]],
   ["Sangue de Assassino", "Tóxico", ["veneno", "morte"]]
@@ -157,7 +162,7 @@ export const INGREDIENT_LIBRARY = Object.freeze([
  * Cria uma receita expandida com configurações padrão.
  * Usada para definir as receitas adicionais do módulo.
  */
-const extraRecipe = (id, name, type, category, rarity, description, ingredients, resultDescription, formula, dc, tags = [], compendiumUuid = null, compendiumLookup = null) => ({
+const extraRecipe = (id, name, type, category, rarity, description, ingredients, resultDescription, formula, dc, tags = [], compendiumUuid = null, compendiumLookup = null, ingredientData = null) => ({
   id,
   name,
   type,
@@ -167,7 +172,7 @@ const extraRecipe = (id, name, type, category, rarity, description, ingredients,
   img: type === "poison" ? PATHS.POISON_ICON : PATHS.POTION_ICON,
   tags,
   ingredients: ingredients.map(name => ingredient(name)),
-  result: result(name, resultDescription, type === "poison" ? PATHS.POISON_ICON : PATHS.POTION_ICON, { formula, ...(compendiumUuid ? { compendiumUuid } : {}) }),
+  result: result(name, resultDescription, type === "poison" ? PATHS.POISON_ICON : PATHS.POTION_ICON, { formula, ...(compendiumUuid ? { compendiumUuid } : {}), ...(ingredientData ? { ingredient: ingredientData } : {}) }),
   check: { enabled: true, type: "skill", key: type === "poison" ? "nat" : "arc", dc },
   discoverable: true,
   secret: false,
@@ -187,6 +192,17 @@ const extraRecipe = (id, name, type, category, rarity, description, ingredients,
  * ============================================================
  */
 export const EXPANDED_RECIPES = Object.freeze([
+  extraRecipe("antitoxin-concentrated", "Antitoxina Concentrada", "special", "Utilidade", "uncommon", "Uma preparação concentrada que neutraliza toxinas e pode servir de base para poções de resistência.", ["Glândula Tóxica", "Folha Amarga", "Água Purificada"], "Ingrediente alquímico: concede resistência a venenos quando usado na fabricação de poções de resistência.", "1 dose", 14, ["antídoto", "veneno", "resistência"], null, null, { category: "Tóxico", rarity: "uncommon", properties: ["veneno", "resistência", "antídoto"], potency: 2, toxicity: 1, stability: 2, tags: ["veneno", "resistência", "antídoto"] }),
+  extraRecipe("resistance-acid", "Poção de Resistência — Ácido", "potion", "Resistência", "rare", "Uma película mineral protege contra substâncias corrosivas.", ["Núcleo Ácido", "Cristal Elemental", "Água Purificada"], "Concede resistência a dano ácido por 1 hora.", "1 hora", 16, ["resistência", "ácido"], null, ["Potion of Resistance"]),
+  extraRecipe("resistance-lightning", "Poção de Resistência — Elétrico", "potion", "Resistência", "rare", "Faíscas percorrem o líquido e se dissipam sem ferir o bebedor.", ["Faísca Elétrica", "Cristal de Quartzo", "Água Purificada"], "Concede resistência a dano elétrico por 1 hora.", "1 hora", 16, ["resistência", "elétrico"], null, ["Potion of Resistance"]),
+  extraRecipe("resistance-force", "Poção de Resistência — Energético", "potion", "Resistência", "rare", "Uma pressão invisível envolve o corpo e desvia impactos de força.", ["Essência Energética", "Essência Mágica", "Água Purificada"], "Concede resistência a dano energético por 1 hora.", "1 hora", 16, ["resistência", "energético"], null, ["Potion of Resistance"]),
+  extraRecipe("resistance-fire", "Poção de Resistência — Ígneo", "potion", "Resistência", "rare", "O calor intenso se curva ao redor do frasco sem consumi-lo.", ["Cinza Ígnea", "Escama de Dragão", "Álcool Alquímico"], "Concede resistência a dano ígneo por 1 hora.", "1 hora", 16, ["resistência", "ígneo"], null, ["Potion of Resistance"]),
+  extraRecipe("resistance-necrotic", "Poção de Resistência — Necrótico", "potion", "Resistência", "rare", "Uma sombra silenciosa sela a vitalidade contra energia necrótica.", ["Fragmento Necrótico", "Essência de Sombra", "Água Purificada"], "Concede resistência a dano necrótico por 1 hora.", "1 hora", 16, ["resistência", "necrótico"], null, ["Potion of Resistance"]),
+  extraRecipe("resistance-psychic", "Poção de Resistência — Psíquico", "potion", "Resistência", "rare", "O brilho do cristal acalma pensamentos e protege a mente.", ["Cristal Psíquico", "Flor Lunar", "Essência Mágica"], "Concede resistência a dano psíquico por 1 hora.", "1 hora", 16, ["resistência", "psíquico"], null, ["Potion of Resistance"]),
+  extraRecipe("resistance-radiant", "Poção de Resistência — Radiante", "potion", "Resistência", "rare", "Uma luz dourada envolve o corpo e repele energia radiante.", ["Pó Radiante", "Água de Fonte Feérica", "Essência Mágica"], "Concede resistência a dano radiante por 1 hora.", "1 hora", 16, ["resistência", "radiante"], null, ["Potion of Resistance"]),
+  extraRecipe("resistance-thunder", "Poção de Resistência — Trovejante", "potion", "Resistência", "rare", "O som de um trovão distante vibra dentro do frasco.", ["Núcleo Trovejante", "Cristal Elemental", "Álcool Alquímico"], "Concede resistência a dano trovejante por 1 hora.", "1 hora", 16, ["resistência", "trovejante"], null, ["Potion of Resistance"]),
+  extraRecipe("resistance-poison", "Poção de Resistência — Venenoso", "potion", "Resistência", "rare", "A mistura neutraliza toxinas antes que alcancem o sangue.", ["Antitoxina Concentrada", "Glândula Tóxica", "Água Purificada"], "Concede resistência a dano venenoso por 1 hora.", "1 hora", 16, ["resistência", "veneno"], null, ["Potion of Resistance"]),
+  extraRecipe("resistance-cold", "Poção de Resistência — Frio", "potion", "Resistência", "rare", "Cristais de gelo protegem o corpo contra temperaturas sobrenaturais.", ["Geada Elemental", "Essência de Sombra", "Água Purificada"], "Concede resistência a dano de frio por 1 hora.", "1 hora", 16, ["resistência", "frio"], null, ["Potion of Resistance"]),
   extraRecipe("acid-vial", "Ácido (Frasco)", "special", "Dano", "common", "Acido concentrado para corroer materiais e ferimentos.", ["Álcool Alquímico", "Glândula Tóxica", "Cristal Elemental"], "Causa dano corrosivo por ferimento ou contato.", "2d6 ácido", 12, ["ácido", "corrosivo"], null, ["Acid (Vial)", "Ácido (Frasco)", "Acid Vial"]),
   extraRecipe("holy-water-flask", "Frasco com Água Benta", "special", "Cura", "rare", "Água sagrada em frasco para purificar e ferir criaturas malignas.", ["Água Purificada", "Essência Mágica", "Erva Vermelha"], "Causa dano a mortos-vivos e purifica objetos ou criaturas profanas.", "2d6 radiant", 16, ["água", "sagrada"], null, ["Holy Water", "Água Benta", "Frasco com Água Benta"]),
   extraRecipe("potion-climbing", "Poção de Escalada", "potion", "Movimento", "common", "A essência torna mãos e pés aderentes por um curto período.", ["Raiz Entorpecente", "Essência Mágica", "Água Purificada"], "Ganha deslocamento de escalada por 1 hora.", "1 hora", 12, ["escalada", "movimento"], null, ["Potion of Climbing", "Poção de Escalada"]),
@@ -317,6 +333,7 @@ export function validateRecipe(source, { strict = true } = {}) {
     effects: Array.isArray(output.effects) ? output.effects.slice(0, 20) : [],
     poison: output.poison && typeof output.poison === "object" ? output.poison : null,
     midiFlags: output.midiFlags && typeof output.midiFlags === "object" ? output.midiFlags : {},
+    ingredient: output.ingredient && typeof output.ingredient === "object" ? output.ingredient : null,
     ...(output.compendiumUuid ? { compendiumUuid: String(output.compendiumUuid) } : {})
   };
 

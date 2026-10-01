@@ -37,12 +37,14 @@ O identificador da pasta precisa ser `alchemy-system`.
 
 ## Ingredientes
 
-O módulo possui **26 ingredientes alquímicos** na biblioteca interna, incluindo:
+O módulo possui **36 ingredientes alquímicos** na biblioteca interna, incluindo:
 
 - Erva Vermelha, Folha Amarga, Flor Lunar e Raiz Entorpecente.
 - Cogumelo Azul, Esporo Sonífero, Cristal Elemental e Cristal de Quartzo.
 - Pó de Diamante, Pó de Esmeralda, Escama de Dragão e Pena de Águia.
 - Olho de Basilisco e Casca de Basilisco.
+- Núcleo Ácido, Faísca Elétrica, Essência Energética, Cinza Ígnea e Geada Elemental.
+- Fragmento Necrótico, Cristal Psíquico, Pó Radiante, Núcleo Trovejante e Antitoxina Concentrada.
 - Essência Mágica, Essência de Sombra, Água Purificada e Água de Fonte Feérica.
 - Álcool Alquímico, Óleo Estabilizador, Glândula Tóxica e venenos raros.
 
@@ -50,11 +52,30 @@ O módulo possui **26 ingredientes alquímicos** na biblioteca interna, incluind
 
 O macro [macros/create-alchemy-ingredients.js](macros/create-alchemy-ingredients.js) cria ou atualiza todos os ingredientes no mundo ou em um compêndio de itens.
 
-1. Crie um Macro do tipo **Script**.
-2. Cole o conteúdo do arquivo do macro.
-3. Execute como Mestre.
-4. Escolha o compêndio de destino.
-5. Desbloqueie o compêndio antes da execução, se necessário.
+#### Tutorial: criar no compêndio
+
+1. Abra o arquivo [macros/create-alchemy-ingredients.js](macros/create-alchemy-ingredients.js) e copie todo o conteúdo.
+2. No Foundry, abra **Macros** e crie um macro do tipo **Script**.
+3. Cole o conteúdo e confirme que estas opções estão configuradas:
+
+```js
+const DESTINO = "compendium";
+const COMPENDIUM_COLLECTION = "";
+const QUANTIDADE_INICIAL = 3;
+const ATUALIZAR_EXISTENTES = true;
+```
+
+4. Execute o macro como Mestre.
+5. Se `COMPENDIUM_COLLECTION` estiver vazio, selecione o compêndio na janela exibida.
+6. Se quiser abrir um compêndio específico sem perguntar, informe sua collection:
+
+```js
+const COMPENDIUM_COLLECTION = "world.alchemy-ingredients";
+```
+
+Substitua `world.alchemy-ingredients` pelo identificador exibido na lista de compêndios. O compêndio precisa ser de **Itens** e estar desbloqueado para escrita.
+
+O macro cria ou atualiza os **36 ingredientes**, evita duplicatas pelo nome e aplica a flag `alchemy-system.ingredient`. Ao concluir, o Foundry exibirá quantos itens foram criados e atualizados.
 
 Os itens recebem a flag `alchemy-system.ingredient`, quantidade inicial e propriedades alquímicas. O macro evita duplicatas e atualiza flags de itens existentes.
 
@@ -113,7 +134,7 @@ node tools/validate.mjs
 node tools/regression.mjs
 ```
 
-A validação verifica JSON, manifesto, imports, sintaxe JavaScript, cobertura dos 26 ingredientes e correspondência do inventário.
+A validação verifica JSON, manifesto, imports, sintaxe JavaScript, cobertura dos 36 ingredientes e correspondência do inventário.
 
 ## Estrutura
 

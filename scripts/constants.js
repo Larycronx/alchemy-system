@@ -15,7 +15,7 @@ export const MODULE_ID = "alchemy-system";
 export const MODULE_TITLE = "Sistema de Alquimia";
 
 /** Versão do schema de dados (para migrações) */
-export const SCHEMA_VERSION = 4;
+export const SCHEMA_VERSION = 5;
 
 /** Nome do socket para comunicação entre clientes */
 export const SOCKET_NAME = `module.${MODULE_ID}`;

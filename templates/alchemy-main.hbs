@@ -253,11 +253,11 @@
           </p>
           <div class="ingredient-library">
             {{#each ingredientLibrary}}
-              <article class="ingredient-library-card">
+              <article class="ingredient-library-card {{#if missing}}missing{{/if}}">
                 <img src="{{img}}" alt=""/>
                 <div>
                   <h3>{{name}}</h3>
-                  <p>{{category}} · <strong>{{owned}}×</strong> no inventário</p>
+                  <p>{{category}} · <strong>{{owned}}×</strong> no inventário{{#if missing}} · faltando{{/if}}</p>
                   <p>{{#each properties}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}</p>
                 </div>
               </article>
