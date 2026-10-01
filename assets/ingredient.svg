@@ -1,1 +1,24 @@
+<!--
+  ============================================================
+  ÍCONE DE INGREDIENTE
+  ============================================================
+  Este ícone é usado:
+  - Na biblioteca de ingredientes
+  - Nos cards de receitas (como ícone de ingrediente)
+  - Na interface de experimentação
+
+  O ícone representa uma folha verde, simbolizando os
+  ingredientes naturais usados na alquimia.
+  ============================================================
+-->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><path fill="#4c8a58" stroke="#234b31" stroke-width="6" d="M63 112C45 89 37 62 47 18c29 19 41 48 16 94z"/><path fill="#6aa66c" stroke="#234b31" stroke-width="6" d="M64 108c8-34 26-52 54-61-1 34-18 57-54 61z"/><path fill="none" stroke="#d8e5b5" stroke-width="5" stroke-linecap="round" d="M61 111c3-34-1-61-11-82m14 77c14-20 29-37 44-50"/></svg>
+
+<!-- Fim do ícone de ingrediente -->
+
+<!-- ============================================================
+     FIM DO ARQUIVO DE ÍCONE
+     ============================================================
+     Este ícone é usado na biblioteca de ingredientes e nos
+     cards de receitas. O ícone representa uma folha verde,
+     simbolizando os ingredientes naturais usados na alquimia.
+     ============================================================ -->
