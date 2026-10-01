@@ -1,39 +1,39 @@
 <div align="center">
 
-<img src="assets/alchemy.svg" alt="Ícone do Sistema de Alquimia" width="120" />
-
-# ⚗️ Sistema de Alquimia ⚗️
-
-### ✦ Conhecimento, experimentação e produção para Foundry VTT ✦
-
-*Um módulo de alquimia para campanhas de **D&D 5e**, com receitas descobríveis,<br>ingredientes, poções, venenos, progressão e ferramentas completas para jogadores e Mestres.*
+<img src="assets/readme/banner.svg" alt="Sistema de Alquimia" width="100%" />
 
 <br>
 
-![Foundry VTT v13](https://img.shields.io/badge/Foundry%20VTT-v13-7c3aed?style=for-the-badge&logo=foundry-virtual-tabletop&logoColor=white)
-![D&D 5e](https://img.shields.io/badge/D%26D%205e-4.0.0%2B-b91c1c?style=for-the-badge)
-![Português do Brasil](https://img.shields.io/badge/idioma-pt--BR-15803d?style=for-the-badge)
-![Licença MIT](https://img.shields.io/badge/licença-MIT-c9a227?style=for-the-badge)
+![Foundry VTT v13](https://img.shields.io/badge/Foundry%20VTT-v13-8b2c4a?style=for-the-badge&labelColor=1a0d12)
+![D&D 5e](https://img.shields.io/badge/D%26D%205e-4.0.0%2B-b8902f?style=for-the-badge&labelColor=1a0d12)
+![Idioma](https://img.shields.io/badge/idioma-pt--BR-5c6b4a?style=for-the-badge&labelColor=1a0d12)
+![Licença MIT](https://img.shields.io/badge/licen%C3%A7a-MIT-8a6a1f?style=for-the-badge&labelColor=1a0d12)
 
 <br>
 
-> *“Toda grande descoberta começa com um ingrediente,*
-> *uma hipótese e a coragem de misturá-los.”*
+Um módulo de alquimia para campanhas de **D&D 5e**, com receitas descobríveis,<br>
+ingredientes, poções, venenos, progressão e ferramentas completas para jogadores e Mestres.
 
 <br>
 
-[🜂 Recursos](#-recursos) •
-[🜄 Instalação](#-instalação) •
-[🜁 Como usar](#-como-usar) •
-[🜃 Experimentação](#-experimentação) •
-[⚙️ Configurações](#️-configurações) •
-[📜 API](#-api-pública)
+*"Toda grande descoberta começa com um ingrediente,<br>
+uma hipótese e a coragem de misturá-los."*
+
+<br>
+
+[Recursos](#recursos) &nbsp;·&nbsp;
+[Instalação](#instalação) &nbsp;·&nbsp;
+[Como usar](#como-usar) &nbsp;·&nbsp;
+[Experimentação](#experimentação) &nbsp;·&nbsp;
+[Configurações](#configurações) &nbsp;·&nbsp;
+[API pública](#api-pública) &nbsp;·&nbsp;
+[Contribuindo](#contribuindo)
 
 </div>
 
----
+<p align="center"><img src="assets/readme/divider.svg" alt="" width="600"></p>
 
-## 📖 Visão geral
+## Visão geral
 
 O **Sistema de Alquimia** adiciona uma camada completa de criação e descoberta ao seu mundo de Foundry VTT. Personagens reúnem ingredientes, aprendem fórmulas, experimentam combinações e fabricam resultados, enquanto o Mestre controla o catálogo, o conhecimento individual e as regras da oficina.
 
@@ -41,19 +41,33 @@ A interface acompanha a atmosfera do módulo com três temas visuais:
 
 | Tema | Ideal para |
 | :--- | :--- |
-| 📜 **Pergaminho** | Uma bancada clássica de estudos |
-| 🌑 **Escuro** | Laboratórios, masmorras e oficinas noturnas |
-| ☀️ **Claro** | Uma leitura mais limpa e luminosa |
+| **Pergaminho** | Uma bancada clássica de estudos |
+| **Escuro** | Laboratórios, masmorras e oficinas noturnas |
+| **Claro** | Uma leitura mais limpa e luminosa |
 
----
+<!-- IMAGEM DOS TEMAS: remova esta linha e a última para ativar
+<p align="center">
+  <img src="assets/screenshots/tema-pergaminho.png" width="32%" alt="Tema Pergaminho" />
+  <img src="assets/screenshots/tema-escuro.png" width="32%" alt="Tema Escuro" />
+  <img src="assets/screenshots/tema-claro.png" width="32%" alt="Tema Claro" />
+</p>
+-->
 
-## 🜂 Recursos
+<!-- GIF DE APRESENTAÇÃO: remova esta linha e a última para ativar
+<p align="center">
+  <img src="assets/gifs/visao-geral.gif" width="780" alt="Visão geral do módulo em funcionamento" />
+</p>
+-->
+
+<p align="center"><img src="assets/readme/divider.svg" alt="" width="600"></p>
+
+## Recursos
 
 <table>
 <tr>
 <td width="50%" valign="top">
 
-### 🧪 Para personagens
+### Para personagens
 
 - Descoberta e conhecimento individual de receitas
 - Biblioteca de poções, venenos e itens especiais
@@ -70,7 +84,7 @@ A interface acompanha a atmosfera do módulo com três temas visuais:
 </td>
 <td width="50%" valign="top">
 
-### 🔮 Para Mestres
+### Para Mestres
 
 - Painel administrativo de alquimia
 - Criação, edição, duplicação e exclusão de receitas
@@ -85,11 +99,9 @@ A interface acompanha a atmosfera do módulo com três temas visuais:
 </tr>
 </table>
 
----
+### Conteúdo incluído
 
-## 🧰 Conteúdo incluído
-
-| ⚗️ Elemento | ✦ Detalhe |
+| Elemento | Detalhe |
 | :--- | :--- |
 | Ingredientes alquímicos | **36** na biblioteca interna |
 | Receitas padrão | **7** exemplos prontos |
@@ -100,9 +112,7 @@ A interface acompanha a atmosfera do módulo com três temas visuais:
 
 Entre os ingredientes estão ervas, raízes, cogumelos, cristais, pós minerais, essências elementais, partes de criaturas, líquidos e reagentes estabilizadores.
 
----
-
-## 🔗 Compatibilidade
+### Compatibilidade
 
 | Componente | Compatibilidade |
 | :--- | :--- |
@@ -110,11 +120,11 @@ Entre os ingredientes estão ervas, raízes, cogumelos, cristais, pós minerais,
 | Sistema D&D 5e | 4.0.0 ou superior, compatível com Foundry v13 |
 | Midi-QOL | Opcional, usado para automação de itens e efeitos |
 
-> 💡 O módulo funciona sem o Midi-QOL. Quando instalado, a integração fica disponível para os recursos compatíveis.
+> O módulo funciona sem o Midi-QOL. Quando instalado, a integração fica disponível para os recursos compatíveis.
 
----
+<p align="center"><img src="assets/readme/divider.svg" alt="" width="600"></p>
 
-## 🜄 Instalação
+## Instalação
 
 1. Baixe este repositório ou clone-o dentro da pasta de módulos do Foundry:
 
@@ -128,11 +138,9 @@ Entre os ingredientes estão ervas, raízes, cogumelos, cristais, pós minerais,
 5. Acesse **Configurações → Gerenciar Módulos**.
 6. Ative o **Sistema de Alquimia**.
 
-> ⚠️ O identificador da pasta deve ser exatamente `alchemy-system`.
+> **Atenção:** o identificador da pasta deve ser exatamente `alchemy-system`.
 
----
-
-## 🌿 Preparando os ingredientes
+### Preparando os ingredientes
 
 O macro [`macros/create-alchemy-ingredients.js`](macros/create-alchemy-ingredients.js) cria ou atualiza os 36 ingredientes alquímicos no mundo ou em um compêndio de itens.
 
@@ -151,7 +159,7 @@ O macro [`macros/create-alchemy-ingredients.js`](macros/create-alchemy-ingredien
 5. Se `COMPENDIUM_COLLECTION` estiver vazio, selecione o compêndio na janela exibida.
 
 <details>
-<summary><b>📦 Apontar para um compêndio específico</b></summary>
+<summary><b>Apontar para um compêndio específico</b></summary>
 
 <br>
 
@@ -164,7 +172,7 @@ Substitua `world.alchemy-ingredients` pelo identificador do seu compêndio. Ele 
 </details>
 
 <details>
-<summary><b>✨ O que o macro faz</b></summary>
+<summary><b>O que o macro faz</b></summary>
 
 <br>
 
@@ -177,11 +185,17 @@ Substitua `world.alchemy-ingredients` pelo identificador do seu compêndio. Ele 
 
 </details>
 
----
+<!-- GIF DA INSTALAÇÃO DO MACRO: remova esta linha e a última para ativar
+<p align="center">
+  <img src="assets/gifs/macro-ingredientes.gif" width="780" alt="Criando os ingredientes pelo macro" />
+</p>
+-->
 
-## 🜁 Como usar
+<p align="center"><img src="assets/readme/divider.svg" alt="" width="600"></p>
 
-### 🧙 Jogadores
+## Como usar
+
+### Jogadores
 
 A interface pode ser aberta de qualquer uma destas formas:
 
@@ -192,11 +206,17 @@ A interface pode ser aberta de qualquer uma destas formas:
 
 Para fabricar uma receita, o personagem precisa ter:
 
-- ✦ os ingredientes necessários, na quantidade exigida;
-- ✦ conhecimento da receita, quando o conhecimento individual estiver ativo;
-- ✦ o equipamento requerido, como **Kit de Alquimia**, quando essa opção estiver habilitada.
+- os ingredientes necessários, na quantidade exigida;
+- conhecimento da receita, quando o conhecimento individual estiver ativo;
+- o equipamento requerido, como **Kit de Alquimia**, quando essa opção estiver habilitada.
 
-### 👑 Mestres
+<!-- IMAGEM DA INTERFACE DO JOGADOR: remova esta linha e a última para ativar
+<p align="center">
+  <img src="assets/screenshots/interface-jogador.png" width="780" alt="Interface de alquimia do jogador" />
+</p>
+-->
+
+### Mestres
 
 O painel administrativo abre pelo controle de token ou pela API:
 
@@ -206,20 +226,27 @@ game.modules.get("alchemy-system").api.openGM();
 
 No painel, o Mestre administra receitas, ingredientes, conhecimento dos personagens, histórico, progressão, importação e exportação.
 
----
+<!-- IMAGEM DO PAINEL DO MESTRE: remova esta linha e a última para ativar
+<p align="center">
+  <img src="assets/screenshots/painel-mestre.png" width="780" alt="Painel administrativo do Mestre" />
+</p>
+-->
 
-## 🜃 Experimentação
+<p align="center"><img src="assets/readme/divider.svg" alt="" width="600"></p>
+
+## Experimentação
 
 A experimentação permite selecionar exatamente **2 ou 3 ingredientes** e testar uma combinação.
 
 ```mermaid
+%%{init: {'theme':'base','themeVariables':{'primaryColor':'#2a0f1b','primaryTextColor':'#f3e6c0','primaryBorderColor':'#c9a227','lineColor':'#c9a227','secondaryColor':'#3a1626','tertiaryColor':'#1a0d12','fontFamily':'Georgia, serif'}}}%%
 flowchart LR
-    A[🌿 2 ou 3 ingredientes] --> B{⚗️ Combinação}
-    B --> C[📜 Revela receita]
-    B --> D[✨ Descobre fórmula]
-    B --> E[🧪 Poção ou veneno]
-    B --> F[💥 Mistura defeituosa]
-    B --> G[❌ Falha simples]
+    A["2 ou 3 ingredientes"] --> B{"Combinação"}
+    B --> C["Revela receita"]
+    B --> D["Descobre fórmula"]
+    B --> E["Poção ou veneno"]
+    B --> F["Mistura defeituosa"]
+    B --> G["Falha simples"]
 ```
 
 Dependendo das configurações do mundo, uma combinação pode:
@@ -231,11 +258,17 @@ Dependendo das configurações do mundo, uma combinação pode:
 - resultar em falha simples;
 - executar um teste de alquimia com CD configurável.
 
-> 🔍 As combinações são revalidadas no momento da execução para evitar resultados inconsistentes com o inventário atual.
+> As combinações são revalidadas no momento da execução para evitar resultados inconsistentes com o inventário atual.
 
----
+<!-- GIF DA EXPERIMENTAÇÃO: remova esta linha e a última para ativar
+<p align="center">
+  <img src="assets/gifs/experimentacao.gif" width="780" alt="Experimentando combinações de ingredientes" />
+</p>
+-->
 
-## ⚒️ Fabricação e itens do D&D 5e
+<p align="center"><img src="assets/readme/divider.svg" alt="" width="600"></p>
+
+## Fabricação e itens do D&D 5e
 
 As receitas mapeadas usam os itens reais do compêndio `dnd5e.items` como origem. Ao fabricar um item, o módulo preserva:
 
@@ -255,9 +288,15 @@ Compendium.dnd5e.items.Item.5m9ErO9In8Uc5yyf
 
 > Se uma receita configurada por UUID ou aliases não encontrar o item correspondente, a fabricação é interrompida com uma mensagem clara, sem criar um item genérico silenciosamente.
 
----
+<!-- GIF DA FABRICAÇÃO: remova esta linha e a última para ativar
+<p align="center">
+  <img src="assets/gifs/fabricacao.gif" width="780" alt="Fabricando uma poção" />
+</p>
+-->
 
-## ⚙️ Configurações
+<p align="center"><img src="assets/readme/divider.svg" alt="" width="600"></p>
+
+## Configurações
 
 <details>
 <summary><b>Ver todas as configurações disponíveis</b></summary>
@@ -280,9 +319,7 @@ Compendium.dnd5e.items.Item.5m9ErO9In8Uc5yyf
 
 </details>
 
----
-
-## 📜 API pública
+## API pública
 
 ```js
 // Abrir a interface do jogador
@@ -297,9 +334,7 @@ game.modules.get("alchemy-system").api.openGM();
 
 A API também fica disponível globalmente como `AlchemyModule`.
 
----
-
-## 🔄 Atualização de receitas
+## Atualização de receitas
 
 O módulo mantém um `schemaVersion` para migrar receitas salvas no mundo. Após atualizar o módulo:
 
@@ -310,9 +345,9 @@ O módulo mantém um `schemaVersion` para migrar receitas salvas no mundo. Após
 
 Os novos aliases e UUIDs de compêndio são aplicados às receitas existentes durante a migração.
 
----
+<p align="center"><img src="assets/readme/divider.svg" alt="" width="600"></p>
 
-## 🛠️ Desenvolvimento
+## Desenvolvimento
 
 O projeto não possui processo de build nem dependências externas obrigatórias. Para validar a instalação local, execute na raiz do repositório:
 
@@ -322,7 +357,7 @@ node tools/regression.mjs
 ```
 
 <details>
-<summary><b>🔎 O que a validação verifica</b></summary>
+<summary><b>O que a validação verifica</b></summary>
 
 <br>
 
@@ -339,7 +374,7 @@ node tools/regression.mjs
 </details>
 
 <details>
-<summary><b>🧬 O que a regressão verifica</b></summary>
+<summary><b>O que a regressão verifica</b></summary>
 
 <br>
 
@@ -354,13 +389,11 @@ node tools/regression.mjs
 
 </details>
 
----
-
-## 🗂️ Estrutura do projeto
+### Estrutura do projeto
 
 ```
 alchemy-system/
-├── assets/       # Ícones SVG do módulo
+├── assets/       # Ícones SVG e imagens do módulo
 ├── lang/         # Traduções, atualmente pt-BR
 ├── macros/       # Macros para criação e manutenção de ingredientes
 ├── scripts/      # API, dados, fabricação, inventário e integração
@@ -372,11 +405,11 @@ alchemy-system/
 └── README.md     # Este documento
 ```
 
----
+<p align="center"><img src="assets/readme/divider.svg" alt="" width="600"></p>
 
-## 🤝 Contribuindo
+## Contribuindo
 
-Contribuições são bem-vindas! Antes de abrir um pull request:
+Contribuições são bem-vindas. Antes de abrir um pull request:
 
 1. Descreva claramente o problema ou a melhoria.
 2. Mantenha a interface e as traduções consistentes.
@@ -393,25 +426,22 @@ Para relatar um problema, abra uma [issue](https://github.com/Larycronx/alchemy-
 - passos para reproduzir o problema;
 - mensagens relevantes do console, se houver.
 
----
-
-## 📄 Licença
+## Licença
 
 Distribuído sob a [licença MIT](LICENSE).
 
-## 🔖 Links
-
-[Repositório](https://github.com/Larycronx/alchemy-system) •
-[Foundry VTT](https://foundryvtt.com/) •
-[Sistema D&D 5e](https://foundryvtt.com/packages/dnd5e/) •
-[Issues e sugestões](https://github.com/Larycronx/alchemy-system/issues)
-
----
+<p align="center"><img src="assets/readme/divider.svg" alt="" width="600"></p>
 
 <div align="center">
 
-⚗️ ✦ 🜂 ✦ 🜄 ✦ 🜁 ✦ 🜃 ✦ ⚗️
+[Repositório](https://github.com/Larycronx/alchemy-system) &nbsp;·&nbsp;
+[Foundry VTT](https://foundryvtt.com/) &nbsp;·&nbsp;
+[Sistema D&D 5e](https://foundryvtt.com/packages/dnd5e/) &nbsp;·&nbsp;
+[Issues e sugestões](https://github.com/Larycronx/alchemy-system/issues)
 
-*Forjado para campanhas de fantasia, descobertas perigosas<br>e poções que talvez não devessem ser bebidas.*
+<br>
+
+*Forjado para campanhas de fantasia, descobertas perigosas<br>
+e poções que talvez não devessem ser bebidas.*
 
 </div>
